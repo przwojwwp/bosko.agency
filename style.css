@@ -90,7 +90,6 @@ body {
 /* End Of Section 1 */
 
 /* Section 2 */
-
 .section-2 {
   position: relative;
   width: 96vw; /* Zajmuje 100% szerokości dostępnego ekranu */
@@ -103,7 +102,7 @@ body {
 
 .logo-section-2 {
   position: absolute;
-  left: 6%;
+  left: 5%;
   font-size: 2.6vw;
   font-weight: bold;
   color: black;
@@ -112,7 +111,7 @@ body {
 }
 
 .section-2 video {
-  width: 40vw; /* Adjust as needed */
+  width: 60vw; /* Adjust as needed */
   height: auto; /* Adjust as needed */
   object-fit: fill;
 }
