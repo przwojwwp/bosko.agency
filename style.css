@@ -110,10 +110,20 @@ body {
   border-bottom: 0.5vw solid;
 }
 
-.section-2 video {
-  width: 60vw; /* Adjust as needed */
-  height: auto; /* Adjust as needed */
-  object-fit: fill;
+.iframe-container {
+  position: relative;
+  width: 55vw;
+  padding-bottom: 31.25%; /* Proporcje 16:9 (9 / 16 * 100) */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .section-2-text-content {
@@ -179,6 +189,27 @@ body {
 .section-2-subtitle {
   color: #000000;
   font-size: 1vw;
+}
+
+@media screen and (max-width: 768px) {
+  /* Styl dla małych ekranów */
+  .section-2-subtitle {
+    font-size: 3vw;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  /* Styl dla średnich ekranów */
+  .section-2-subtitle {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  /* Styl dla dużych ekranów */
+  .section-2-subtitle {
+    font-size: 1vw;
+  }
 }
 
 /* End Of Section 2 */
