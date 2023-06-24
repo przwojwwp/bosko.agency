@@ -112,8 +112,8 @@ body {
 
 .iframe-container {
   position: relative;
-  width: 55vw;
-  padding-bottom: 31.25%; /* Proporcje 16:9 (9 / 16 * 100) */
+  width: 65vw;
+  padding-bottom: 36.5625%; /* Proporcje 16:9 (9 / 16 * 65) */
   height: 0;
   overflow: hidden;
 }
@@ -136,7 +136,8 @@ body {
   font-size: 5vw;
   font-weight: bold;
   line-height: 1;
-  padding: 2vw;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -466,7 +467,7 @@ body {
 
 .instagram-profile-link {
   text-align: center;
-  padding: 1% 5% 5% 5%;
+  padding: 1% 0% 5% 0%;
   font-size: 150%;
 }
 
