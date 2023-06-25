@@ -43,13 +43,13 @@ body {
 
 .logo-section-1 {
   position: absolute;
-  top: 12%;
+  top: 12.5%;
   left: 8.5%;
   font-size: 3.3vw;
-  font-weight: bold;
+  font-weight: 800;
   color: white;
-  padding-bottom: 1vw;
-  border-bottom: 0.5vw solid;
+  padding-bottom: 0.7vw;
+  border-bottom: 0.8vw solid;
 }
 
 .section-1-text-content {
@@ -69,11 +69,11 @@ body {
   position: absolute;
   left: 5%;
   font-size: 3.3vw;
-  font-weight: bold;
+  font-weight: 800;
   color: black;
   margin-top: 1%;
-  padding-bottom: 1vw;
-  border-bottom: 0.5vw solid;
+  padding-bottom: 0.7vw;
+  border-bottom: 0.8vw solid;
 }
 
 .section-1-second-part {
@@ -104,10 +104,10 @@ body {
   position: absolute;
   left: 3%;
   font-size: 3.3vw;
-  font-weight: bold;
+  font-weight: 800;
   color: black;
-  padding-bottom: 1vw;
-  border-bottom: 0.5vw solid;
+  padding-bottom: 0.7vw;
+  border-bottom: 0.8vw solid;
 }
 
 .iframe-container {
@@ -232,10 +232,10 @@ body {
   top: 1%;
   left: 5.5%;
   font-size: 3.3vw;
-  font-weight: bold;
+  font-weight: 800;
   color: white;
-  padding-bottom: 1vw;
-  border-bottom: 0.5vw solid;
+  padding-bottom: 0.7vw;
+  border-bottom: 0.8vw solid;
 }
 
 .section-3-container {
@@ -246,7 +246,7 @@ body {
 
 .section-3-text-content {
   text-align: center;
-  margin-top: 8%;
+  margin-top: 10%;
 }
 
 .section-3-text-content h2 {
@@ -372,10 +372,10 @@ body {
   top: 1%;
   left: 5.5%;
   font-size: 3.3vw;
-  font-weight: bold;
+  font-weight: 800;
   color: black;
-  padding-bottom: 1vw;
-  border-bottom: 0.5vw solid;
+  padding-bottom: 0.7vw;
+  border-bottom: 0.8vw solid;
 }
 
 .section-4-container {
@@ -404,7 +404,7 @@ body {
 
 .section-4-text-content {
   text-align: center;
-  margin-top: 8%;
+  margin-top: 10%;
 }
 
 .section-4-text-content h2 {
@@ -468,6 +468,7 @@ body {
 .starring-description-text p {
   color: #8d8a8c;
   font-size: 100%;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 767px) {
@@ -510,13 +511,30 @@ body {
 .instagram-profile-link {
   text-align: center;
   padding: 1% 0% 5% 0%;
-  font-size: 150%;
 }
 
 .instagram-profile-link a {
   text-decoration: none;
   color: black;
   font-weight: bold;
+}
+
+@media screen and (max-width: 767px) {
+  .instagram-profile-link h3 {
+    font-size: 6vw;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .instagram-profile-link h3 {
+    font-size: 3.3vw;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .instagram-profile-link h3 {
+    font-size: 2.8vw;
+  }
 }
 
 /* End Of Section 5 */
