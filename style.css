@@ -561,7 +561,7 @@ body {
 @media screen and (max-width: 768px) {
   /* Styl dla małych ekranów */
   .hands-img {
-    width: 70%;
+    width: 75%;
   }
 }
 
@@ -672,6 +672,27 @@ body {
   color: #8d8a8c;
 }
 
+@media screen and (max-width: 768px) {
+  /* Styl dla małych ekranów */
+  .rights {
+    font-size: 2.5vw;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  /* Styl dla średnich ekranów */
+  .rights {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  /* Styl dla dużych ekranów */
+  .rights {
+    font-size: 1vw;
+  }
+}
+
 .footer-icons {
   display: flex;
   align-items: center;
@@ -679,8 +700,8 @@ body {
 
 .footer-linkedin,
 .footer-instagram {
-  padding: 24px;
-  font-size: 250%;
+  padding: 3vw;
+  font-size: 5vw;
 }
 
 .privacy-terms-contact {
@@ -694,6 +715,27 @@ body {
 
 .privacy-terms-contact span {
   margin: 24px; /* Margines po prawej stronie każdego spana */
+}
+
+@media screen and (max-width: 768px) {
+  /* Styl dla małych ekranów */
+  .privacy-terms-contact span {
+    font-size: 2.5vw;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  /* Styl dla średnich ekranów */
+  .privacy-terms-contact span {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  /* Styl dla dużych ekranów */
+  .privacy-terms-contact span {
+    font-size: 1vw;
+  }
 }
 
 /* Wodo Tryski */
