@@ -1,7 +1,72 @@
-body {
+hrml {
   font-size: 16px;
+}
+
+@font-face {
+  font-family: "BiennaleFont";
+  /* regular */
+  src: url("fonts/BiennaleRegular/font.woff") format("woff");
+  src: url("fonts/BiennaleRegular/font.woff2") format("woff2");
+  /* bold */
+  src: url("fonts/BiennaleBold/font.woff") format("woff");
+  src: url("fonts/BiennaleBold/font.woff2") format("woff2");
+  /* MACOSX */
+  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff")
+    format("woff");
+  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff2")
+    format("woff2");
+  src: url("fonts/__MACOSX/BiennaleBold/._font.woff") format("woff");
+  src: url("fonts/__MACOSX/BiennaleBold/._font.woff2") format("woff2");
+}
+
+body {
+  font-family: "BiennaleFont", Arial, sans-serif;
   padding: 0;
   margin: 0;
+  font-size: 1rem;
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+.section-white {
+  background-color: #ffffff;
+}
+
+.section-black {
+  background-color: #000000;
+}
+
+/* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */
+
+@font-face {
+  font-family: "BiennaleFont";
+  /* regular */
+  src: url("fonts/BiennaleRegular/font.woff") format("woff");
+  src: url("fonts/BiennaleRegular/font.woff2") format("woff2");
+  /* bold */
+  src: url("fonts/BiennaleBold/font.woff") format("woff");
+  src: url("fonts/BiennaleBold/font.woff2") format("woff2");
+  /* MACOSX */
+  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff")
+    format("woff");
+  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff2")
+    format("woff2");
+  src: url("fonts/__MACOSX/BiennaleBold/._font.woff") format("woff");
+  src: url("fonts/__MACOSX/BiennaleBold/._font.woff2") format("woff2");
+}
+
+body {
+  font-family: "BiennaleFont", Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
 }
 
 .section-white {
@@ -15,12 +80,15 @@ body {
 /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */
 
 .section-1 {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%;
+  height: 100vh;
+  padding: 3.2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.section-1-video-wrapper {
+.section-1-curtain {
+  background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   top: 0;
   left: 0;
@@ -28,11 +96,26 @@ body {
   height: 100%;
 }
 
-.section-1-video-wrapper iframe {
-  width: 94%;
-  height: 94%;
-  margin: 3%;
-  object-fit: cover; /* Wyświetlanie filmiku na całej powierzchni, zachowując proporcje */
+@media screen and (max-width: 767px) {
+  .section-1 {
+    height: 71vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.section-1-video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.section-1-video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .logo-section-1 {
@@ -52,11 +135,18 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 8vw;
+  font-size: 7.5vw;
   font-weight: bold;
   white-space: nowrap;
   color: white;
   line-height: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .section-1-text-content {
+    top: 35%;
+    left: 50%;
+  }
 }
 
 .logo-section-1-second-part {
@@ -86,9 +176,9 @@ body {
 /* Section 2 */ /* Section 2 */ /* Section 2 */ /* Section 2 */ /* Section 2 */ /* Section 2 */
 .section-2 {
   position: relative;
-  width: 96vw; /* Zajmuje 100% szerokości dostępnego ekranu */
+  width: 100vw; /* Zajmuje 100% szerokości dostępnego ekranu */
   height: auto; /* Zajmuje 100% wysokości dostępnego ekranu */
-  margin: 2%;
+  margin-top: 8vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -96,21 +186,8 @@ body {
 
 /* Small screens (maksymalna szerokość: 767px) */
 @media screen and (max-width: 767px) {
-  .sizing-section-2 {
-  }
-}
-
-/* Medium screens (szerokość: od 768px do 1200px) */
-@media screen and (min-width: 768px) and (max-width: 1200px) {
-  .sizing-section-2 {
-    margin-bottom: 2vw !important;
-  }
-}
-
-/* Large screens (min-width: 1201px) */
-@media screen and (min-width: 1201px) {
-  .sizing-section-2 {
-    margin-bottom: 2vw !important;
+  .section-2 {
+    margin-top: 2vh;
   }
 }
 
@@ -124,25 +201,18 @@ body {
   border-bottom: 0.8vw solid;
 }
 
-.iframe-container {
+.video-container {
   position: relative;
-  width: 65vw;
-  padding-bottom: 36.5625%; /* Proporcje 16:9 (9 / 16 * 65) */
-  height: 0;
+  height: 58.5vh;
+  width: 52vw;
   overflow: hidden;
-}
-
-.iframe-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 /* Small screens (maksymalna szerokość: 767px) */
 @media screen and (max-width: 767px) {
-  .iframe-container {
+  .video-container {
+    height: 58.5vh;
+    height: 18.5vh;
   }
   /* Tu dodaj style dla small screens */
 }
@@ -150,7 +220,7 @@ body {
 /* Medium screens (szerokość: od 768px do 1200px) */
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   /* Tu dodaj style dla medium screens */
-  .iframe-container {
+  .video-container {
     width: 52vw; /* Zmniejsz szerokość kontenera */
     padding-bottom: 29.25%; /* Zmniejsz proporcje 16:9 */
   }
@@ -159,10 +229,21 @@ body {
 /* Large screens (min. szerokość: 1201px) */
 @media screen and (min-width: 1201px) {
   /* Tu dodaj style dla large screens */
-  .iframe-container {
-    width: 52vw; /* Zmniejsz szerokość kontenera */
-    padding-bottom: 29.25%; /* Zmniejsz proporcje 16:9 */
+  .video-container {
   }
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-2-second-part {
+  padding-bottom: 2vh;
 }
 
 .section-2-text-content {
@@ -172,7 +253,7 @@ body {
 }
 
 .section-2-text-content h2 {
-  font-size: 5vw;
+  font-size: 7.5vw;
   font-weight: bold;
   line-height: 1;
 }
@@ -180,24 +261,25 @@ body {
 @media screen and (max-width: 767px) {
   /* Styl dla małych ekranów */
   .section-2-text-content h2 {
-    font-size: 11vw;
-    margin-top: 5vw;
+    font-size: 7.5vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1200px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   /* Styl dla średnich ekranów */
   .section-2-text-content h2 {
     font-size: 8vw;
-    margin-top: 3.5vw;
+    padding-top: ;
   }
 }
 
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1200px) {
   /* Styl dla dużych ekranów */
   .section-2-text-content h2 {
     font-size: 5.5vw;
-    padding-top: 1vw;
+    padding-top: 60px;
   }
 }
 
@@ -209,7 +291,8 @@ body {
 @media screen and (max-width: 767px) {
   /* Styl dla małych ekranów */
   .section-2-text-content p {
-    font-size: 4vw;
+    font-size: 3vw;
+    margin-top: 2vh;
   }
 }
 
@@ -230,15 +313,17 @@ body {
   }
 }
 
-.section-2-subtitle {
+.section-2-text-content div {
   color: #000000;
-  font-size: 1vw;
+  font-size: 2vw;
+  margin-bottom: 6vh;
 }
 
 @media screen and (max-width: 767px) {
   /* Styl dla małych ekranów */
   .section-2-subtitle {
     font-size: 2vw;
+    margin-bottom: 2vh;
   }
 }
 
