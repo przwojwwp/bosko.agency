@@ -135,7 +135,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 7.5vw;
+  font-size: 7vw;
   font-weight: bold;
   white-space: nowrap;
   color: white;
@@ -144,7 +144,8 @@ body {
 
 @media screen and (max-width: 767px) {
   .section-1-text-content {
-    top: 35%;
+    font-size: 8vw;
+    top: 37%;
     left: 50%;
   }
 }
@@ -211,15 +212,13 @@ body {
 /* Small screens (maksymalna szerokość: 767px) */
 @media screen and (max-width: 767px) {
   .video-container {
-    height: 58.5vh;
+    width: 58.5vh;
     height: 18.5vh;
   }
-  /* Tu dodaj style dla small screens */
 }
 
 /* Medium screens (szerokość: od 768px do 1200px) */
 @media screen and (min-width: 768px) and (max-width: 1200px) {
-  /* Tu dodaj style dla medium screens */
   .video-container {
     width: 52vw; /* Zmniejsz szerokość kontenera */
     padding-bottom: 29.25%; /* Zmniejsz proporcje 16:9 */
@@ -253,7 +252,7 @@ body {
 }
 
 .section-2-text-content h2 {
-  font-size: 7.5vw;
+  font-size: 7vw;
   font-weight: bold;
   line-height: 1;
 }
@@ -261,84 +260,71 @@ body {
 @media screen and (max-width: 767px) {
   /* Styl dla małych ekranów */
   .section-2-text-content h2 {
-    font-size: 7.5vw;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    font-size: 9vw;
+    margin-top: 18px;
+    margin-bottom: 16px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   /* Styl dla średnich ekranów */
   .section-2-text-content h2 {
-    font-size: 8vw;
-    padding-top: ;
+    margin-top: 30px;
+    margin-bottom: 26px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   /* Styl dla dużych ekranów */
   .section-2-text-content h2 {
-    font-size: 5.5vw;
-    padding-top: 60px;
+    margin-top: 60px;
+    margin-bottom: 52px;
   }
 }
 
 .section-2-text-content p {
   font-weight: bold;
   line-height: 1;
+  font-size: 2.45vw;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 767px) {
-  /* Styl dla małych ekranów */
   .section-2-text-content p {
     font-size: 3vw;
-    margin-top: 2vh;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1200px) {
-  /* Styl dla średnich ekranów */
-  .section-2-text-content p {
-    font-size: 3vw;
-    margin-top: 2vw;
-  }
-}
-
-@media screen and (min-width: 1201px) {
-  /* Styl dla dużych ekranów */
-  .section-2-text-content p {
-    font-size: 2vw;
-    margin-top: 2vw;
-    margin-bottom: 0.4vw !important;
   }
 }
 
 .section-2-text-content div {
   color: #000000;
   font-size: 2vw;
-  margin-bottom: 6vh;
 }
 
 @media screen and (max-width: 767px) {
   /* Styl dla małych ekranów */
-  .section-2-subtitle {
+  .section-2-text-content div {
     font-size: 2vw;
-    margin-bottom: 2vh;
+    margin-top: 10px;
+    margin-bottom: 40px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   /* Styl dla średnich ekranów */
-  .section-2-subtitle {
+  .section-2-text-content div {
     font-size: 1.5vw;
-    margin-top: 2vw;
+    margin-top: 15px;
+    margin-bottom: 75px;
   }
 }
 
 @media screen and (min-width: 1201px) {
   /* Styl dla dużych ekranów */
-  .section-2-subtitle {
+  .section-2-text-content div {
     font-size: 1vw;
+    margin-top: 30px;
+    margin-bottom: 150px;
   }
 }
 
