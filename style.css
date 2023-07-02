@@ -121,14 +121,20 @@ body {
 
 #logo-container {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 3vw;
+  left: 4vw;
   z-index: 9999;
+  filter: invert(1);
 }
 
 #logo {
-  width: 3.3vw; /* Dostosuj rozmiar logo według potrzeb */
-  height: auto; /* Zachowaj proporcje */
+  width: 10vw;
+  height: auto;
+  filter: invert(0);
+}
+
+.logo-black #logo {
+  filter: invert(1);
 }
 
 .section-1-text-content {

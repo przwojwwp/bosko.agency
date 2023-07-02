@@ -327,5 +327,18 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+    <script>
+window.addEventListener("scroll", function () {
+  var section2 = document.querySelector(".section-2");
+  var logo = document.getElementById("logo");
+  var logoContainer = document.getElementById("logo-container");
+
+  if (window.pageYOffset >= section2.offsetTop) {
+    logoContainer.classList.add("logo-black");
+  } else {
+    logoContainer.classList.remove("logo-black");
+  }
+});
+    </script>
   </body>
 </html>
