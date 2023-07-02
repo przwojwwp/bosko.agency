@@ -403,6 +403,8 @@ body {
 .section-3-img-container {
   width: auto;
   align-items: top;
+  margin: 0;
+  padding: 0;
 }
 
 .section-3-img-container img {
@@ -499,10 +501,22 @@ body {
   position: relative;
   width: 100vw; /* Zajmuje 100% szerokości dostępnego ekranu */
   height: auto; /* Zajmuje 100% wysokości dostępnego ekranu */
-  margin-bottom: 35px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+@media screen and (min-width: 767.99px) and (max-width: 1199.99px) {
+  .section-4 {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .section-4 {
+    margin-bottom: 60px;
+  }
 }
 
 .logo-section-4 {
@@ -524,7 +538,6 @@ body {
   .section-4-text-content {
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 15px;
   }
 }
 
@@ -554,6 +567,8 @@ body {
 .section-4-img-container {
   width: auto;
   align-items: top;
+  margin: 0;
+  padding: 0;
 }
 
 .section-4-img-container img {
@@ -579,6 +594,7 @@ body {
 .starring-description-text h3 {
   margin: 6% 0 4% 0;
   white-space: nowrap;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -633,17 +649,53 @@ body {
 
 /* Section 5 */
 
-.instagram-post {
+.section-5 {
+  position: relative;
+  width: 100vw; /* Zajmuje 100% szerokości dostępnego ekranu */
+  height: auto; /* Zajmuje 100% wysokości dostępnego ekranu */
+  margin-bottom: 35px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 18vw;
-  overflow: auto;
+  flex-direction: column;
+}
+
+.section-5-text-content h2 {
+  color: black;
+  font-size: 7vw;
+  font-weight: bold;
+  line-height: 1;
+}
+
+@media screen and (max-width: 767.99px) {
+  .section-5-text-content {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199.99px) {
+  .section-5-text-content {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .section-5-text-content {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 100px;
+  }
+}
+
+.instagram-widget {
+  width: 90%;
 }
 
 .instagram-profile-link {
   text-align: center;
-  padding: 1% 0% 5% 0%;
 }
 
 .instagram-profile-link a {
@@ -652,21 +704,29 @@ body {
   font-weight: bold;
 }
 
+.instagram-profile-link h3 {
+  font-size: 2.5vw;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 767.99px) {
   .instagram-profile-link h3 {
-    font-size: 6vw;
+    font-size: 4vw;
+    margin-bottom: 0px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199.99px) {
   .instagram-profile-link h3 {
-    font-size: 3.3vw;
+    margin-top: 25px;
+    margin-bottom: 100px;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .instagram-profile-link h3 {
-    font-size: 2.8vw;
+    margin-top: 50px;
+    margin-bottom: 200px;
   }
 }
 
@@ -685,7 +745,9 @@ body {
 }
 
 .hands-img {
-  width: 35%;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  width: 43%;
   height: auto;
 }
 
@@ -695,6 +757,8 @@ body {
   /* Styl dla małych ekranów */
   .hands-img {
     width: 75%;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 }
 
@@ -702,13 +766,8 @@ body {
   /* Styl dla średnich ekranów */
   .hands-img {
     width: 50%;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  /* Styl dla dużych ekranów */
-  .hands-img {
-    width: 35%;
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
 }
 
@@ -722,6 +781,7 @@ body {
 .section-6-text-content h2 {
   line-height: 1;
   padding: 2vw;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -741,7 +801,7 @@ body {
 @media screen and (min-width: 1200px) {
   /* Styl dla dużych ekranów */
   .section-6-text-content h2 {
-    font-size: 5.5vw;
+    font-size: 7vw;
   }
 }
 
