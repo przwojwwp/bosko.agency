@@ -1,4 +1,4 @@
-hrml {
+html {
   font-size: 16px;
 }
 
@@ -24,6 +24,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 1rem;
+  background-color: white;
 }
 
 .container-fluid {
@@ -118,15 +119,16 @@ body {
   overflow: hidden;
 }
 
-.logo-section-1 {
-  position: absolute;
-  top: 12.5%;
-  left: 8.5%;
-  font-size: 3.3vw;
-  font-weight: 800;
-  color: white;
-  padding-bottom: 0.7vw;
-  border-bottom: 0.8vw solid;
+#logo-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+
+#logo {
+  width: 3.3vw; /* Dostosuj rozmiar logo według potrzeb */
+  height: auto; /* Zachowaj proporcje */
 }
 
 .section-1-text-content {
@@ -150,16 +152,41 @@ body {
   }
 }
 
-.logo-section-1-second-part {
-  position: absolute;
-  left: 5%;
-  font-size: 3.3vw;
-  font-weight: 800;
-  color: black;
-  margin-top: 1%;
-  padding-bottom: 0.7vw;
-  border-bottom: 0.8vw solid;
+@keyframes text-clip {
+  from {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
 }
+
+.title {
+  font-size: 7vw;
+  width: 100%;
+}
+
+.title-inner {
+  display: inline-block;
+  animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+.bosko-inner {
+  display: inline-block;
+  animation: text-clip 1s 0.5s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+.title {
+  animation: none;
+}
+
+.bosko {
+  > .bosko-inner {
+    display: inline-block;
+  }
+}
+
+/* ... */
 
 .section-1-second-part {
   width: 100%;
@@ -190,16 +217,6 @@ body {
   .section-2 {
     margin-top: 2vh;
   }
-}
-
-.logo-section-2 {
-  position: absolute;
-  left: 3%;
-  font-size: 3.3vw;
-  font-weight: 800;
-  color: black;
-  padding-bottom: 0.7vw;
-  border-bottom: 0.8vw solid;
 }
 
 .video-container {
@@ -354,17 +371,6 @@ body {
   }
 }
 
-.logo-section-3 {
-  position: absolute;
-  top: 1%;
-  left: 5.5%;
-  font-size: 3.3vw;
-  font-weight: 800;
-  color: white;
-  padding-bottom: 0.7vw;
-  border-bottom: 0.8vw solid;
-}
-
 .section-3-text-content {
   text-align: center;
 }
@@ -408,7 +414,7 @@ body {
 }
 
 .section-3-img-container img {
-  width: 22.5vw;
+  width: 24vw;
   margin: 0 20px 10px 20px;
 }
 
@@ -422,16 +428,40 @@ body {
   background-color: #d1ff00;
 }
 
+.brand-experience:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
 .brand-partnership {
   background-color: #ee01cf;
+}
+
+.brand-partnership:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .branded-content {
   background-color: #19e59c;
 }
 
+.branded-content:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
 .creative-medium {
   background-color: #00fcff;
+}
+
+.creative-medium:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .superpower-description-text {
@@ -517,17 +547,6 @@ body {
   .section-4 {
     margin-bottom: 60px;
   }
-}
-
-.logo-section-4 {
-  position: absolute;
-  top: 1%;
-  left: 5.5%;
-  font-size: 3.3vw;
-  font-weight: 800;
-  color: black;
-  padding-bottom: 0.7vw;
-  border-bottom: 0.8vw solid;
 }
 
 .section-4-text-content {
