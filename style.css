@@ -14,9 +14,9 @@ body {
 }
 
 .logo {
-  width: 15vw;
+  width: 10vw;
   top: 3vw;
-  left: 4vw;
+  left: 6vw;
 }
 .black {
   filter: invert(1);
@@ -158,8 +158,8 @@ body {
 
 .video-container {
   position: relative;
-  height: 58.5vh;
-  width: 50vw;
+  width: 55vw;
+  height: 52.5vh;
   overflow: hidden;
 }
 
