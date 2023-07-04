@@ -1,88 +1,49 @@
-html {
-  font-size: 16px;
-}
-
-@font-face {
-  font-family: "BiennaleFont";
-  /* regular */
-  src: url("fonts/BiennaleRegular/font.woff") format("woff");
-  src: url("fonts/BiennaleRegular/font.woff2") format("woff2");
-  /* bold */
-  src: url("fonts/BiennaleBold/font.woff") format("woff");
-  src: url("fonts/BiennaleBold/font.woff2") format("woff2");
-  /* MACOSX */
-  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff")
-    format("woff");
-  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff2")
-    format("woff2");
-  src: url("fonts/__MACOSX/BiennaleBold/._font.woff") format("woff");
-  src: url("fonts/__MACOSX/BiennaleBold/._font.woff2") format("woff2");
+* {
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  font-family: "BiennaleFont", Arial, sans-serif;
+}
+
+/* logo logo logo logo logo logo */
+
+.row {
+  overflow: hidden;
+  position: relative;
+}
+
+.logo {
+  width: 15vw;
+  top: 3vw;
+  left: 4vw;
+}
+.black {
+  filter: invert(1);
+}
+
+.section-1-logo {
+  position: fixed;
   padding: 0;
-  margin: 0;
-  font-size: 1rem;
-  background-color: white;
+}
+.white {
 }
 
-.container-fluid {
-  margin: 0;
-  padding: 0;
-}
-
-.section-white {
-  background-color: #ffffff;
-}
-
-.section-black {
-  background-color: #000000;
-}
-
-/* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */
-
-@font-face {
-  font-family: "BiennaleFont";
-  /* regular */
-  src: url("fonts/BiennaleRegular/font.woff") format("woff");
-  src: url("fonts/BiennaleRegular/font.woff2") format("woff2");
-  /* bold */
-  src: url("fonts/BiennaleBold/font.woff") format("woff");
-  src: url("fonts/BiennaleBold/font.woff2") format("woff2");
-  /* MACOSX */
-  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff")
-    format("woff");
-  src: url("fonts/__MACOSX/BiennaleRegular/BiennaleRegular/._font.woff2")
-    format("woff2");
-  src: url("fonts/__MACOSX/BiennaleBold/._font.woff") format("woff");
-  src: url("fonts/__MACOSX/BiennaleBold/._font.woff2") format("woff2");
-}
-
-body {
-  font-family: "BiennaleFont", Arial, sans-serif;
-  padding: 0;
-  margin: 0;
-}
-
-.container-fluid {
-  margin: 0;
+.section-2-logo,
+.section-3-logo,
+.section-4-logo {
+  position: absolute;
   padding: 0;
 }
 
-.section-white {
-  background-color: #ffffff;
-}
+/* End Of Logo End Of Logo End Of Logo End Of Logo End Of Logo */
 
-.section-black {
-  background-color: #000000;
-}
-
-/* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */ /* Section 1 */
+/* Section 1 Section 1 Section 1 Section 1 Section 1 Section 1 */
 
 .section-1 {
-  height: 100vh;
-  padding: 3.2%;
+  height: 95vh;
+  padding: 2.5%;
+  padding-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,24 +78,6 @@ body {
   height: 100%;
   object-fit: cover;
   overflow: hidden;
-}
-
-#logo-container {
-  position: fixed;
-  top: 3vw;
-  left: 4vw;
-  z-index: 9999;
-  filter: invert(1);
-}
-
-#logo {
-  width: 10vw;
-  height: auto;
-  filter: invert(0);
-}
-
-.logo-black #logo {
-  filter: invert(1);
 }
 
 .section-1-text-content {
@@ -192,27 +135,15 @@ body {
   }
 }
 
-/* ... */
+/* End Of Section 1 End Of Section 1 End Of Section 1 End Of Section 1 */
 
-.section-1-second-part {
-  width: 100%;
-  height: auto;
-  margin: 8% 0 8% 0;
-}
+/* Section 2 Section 2 Section 2 Section 2 Section 2 Section 2 */
 
-.section-1-second-part img {
-  width: 80vw;
-  height: auto;
-}
-
-/* End Of Section 1 */ /* End Of Section 1 */ /* End Of Section 1 */ /* End Of Section 1 */
-
-/* Section 2 */ /* Section 2 */ /* Section 2 */ /* Section 2 */ /* Section 2 */ /* Section 2 */
 .section-2 {
   position: relative;
   width: 100vw; /* Zajmuje 100% szerokości dostępnego ekranu */
   height: auto; /* Zajmuje 100% wysokości dostępnego ekranu */
-  margin-top: 8vh;
+  margin-top: 12vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -228,7 +159,7 @@ body {
 .video-container {
   position: relative;
   height: 58.5vh;
-  width: 52vw;
+  width: 50vw;
   overflow: hidden;
 }
 
@@ -245,13 +176,6 @@ body {
   .video-container {
     width: 52vw; /* Zmniejsz szerokość kontenera */
     padding-bottom: 29.25%; /* Zmniejsz proporcje 16:9 */
-  }
-}
-
-/* Large screens (min. szerokość: 1201px) */
-@media screen and (min-width: 1200px) {
-  /* Tu dodaj style dla large screens */
-  .video-container {
   }
 }
 
@@ -350,7 +274,6 @@ body {
     margin-bottom: 150px;
   }
 }
-
 /* End Of Section 2 */ /* End Of Section 2 */ /* End Of Section 2 */ /* End Of Section 2 */
 
 /* Section 3 */ /* Section 3 */ /* Section 3 */ /* Section 3 */ /* Section 3 */ /* Section 3 */
