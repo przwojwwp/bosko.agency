@@ -18,6 +18,19 @@ body {
   top: 3vw;
   left: 6vw;
 }
+
+@media screen and (max-width: 767.99px) {
+  .logo {
+    width: 15vw;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199.99px) {
+  .logo {
+    width: 12.5vw;
+  }
+}
+
 .black {
   filter: invert(1);
 }
@@ -143,7 +156,6 @@ body {
   position: relative;
   width: 100vw; /* Zajmuje 100% szerokości dostępnego ekranu */
   height: auto; /* Zajmuje 100% wysokości dostępnego ekranu */
-  margin-top: 12vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -160,6 +172,7 @@ body {
   position: relative;
   width: 55vw;
   height: 52.5vh;
+  margin-top: 12vh;
   overflow: hidden;
 }
 
@@ -335,6 +348,15 @@ body {
   font-size: 7vw;
 }
 
+@media screen and (max-width: 767.99px) {
+  .section-3-text-content h2 {
+    color: white;
+    font-weight: bold;
+    line-height: 1;
+    font-size: 7vw;
+  }
+}
+
 .section-3-img-container {
   width: auto;
   align-items: top;
@@ -349,7 +371,7 @@ body {
 
 @media screen and (max-width: 767.99px) {
   .section-3-img-container img {
-    width: 55vw;
+    width: 45vw;
   }
 }
 
@@ -410,7 +432,7 @@ body {
 
 @media screen and (max-width: 767.99px) {
   .superpower-description-text h3 {
-    font-size: 6vw;
+    font-size: 5vw;
   }
 }
 
@@ -434,7 +456,7 @@ body {
 
 @media screen and (max-width: 767.99px) {
   .superpower-description-text p {
-    font-size: 2.9vw;
+    font-size: 2.4vw;
   }
 }
 

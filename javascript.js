@@ -2,8 +2,20 @@ function logoSwitch(sectionLogoClass, prevSectionLogoClass, colorClass)
 {
     $(sectionLogoClass).each(function ()
     {
-        $(this).css('top', $(prevSectionLogoClass).offset().top - $(this).closest('.row').offset().top);
-        $(this).css('color', $(colorClass).css('color'));
+        var prevSectionLogo = $(prevSectionLogoClass);
+        var row = $(this).closest('.row');
+
+        // Sprawdzenie, czy poprzednie logo i wiersz są widoczne
+        if (prevSectionLogo.is(':visible') && row.is(':visible'))
+        {
+            var prevSectionLogoTop = prevSectionLogo.offset().top;
+            var rowOffsetTop = row.offset().top;
+            $(this).css('top', prevSectionLogoTop - rowOffsetTop);
+
+            // Zmiana koloru
+            var color = $(colorClass).css('color');
+            $(this).css('color', color);
+        }
     });
 }
 
