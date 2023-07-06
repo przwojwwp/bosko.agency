@@ -385,9 +385,9 @@ body {
 }
 
 .brand-experience:hover {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .brand-partnership {
@@ -395,9 +395,9 @@ body {
 }
 
 .brand-partnership:hover {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .branded-content {
@@ -405,9 +405,9 @@ body {
 }
 
 .branded-content:hover {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .creative-medium {
@@ -415,9 +415,9 @@ body {
 }
 
 .creative-medium:hover {
-  -webkit-transform: scale(0.9);
-  -ms-transform: scale(0.9);
-  transform: scale(0.9);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .superpower-description-text {
@@ -426,7 +426,7 @@ body {
   color: white;
   max-width: 18vw; /* Maksymalna szerokość równa szerokości obrazków */
   margin-left: 20px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 
 .superpower-description-text h3 {
@@ -512,7 +512,7 @@ body {
 @media screen and (max-width: 767.99px) {
   .section-4-text-content {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 50px;
     margin-bottom: 15px;
   }
 }
@@ -545,11 +545,29 @@ body {
   align-items: top;
   margin: 0;
   padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-4-img-container img {
-  width: 22.5vw;
+  width: 24vw;
   margin: 0 20px 10px 20px;
+  transition: transform 0.3s ease;
+  opacity: 1;
+}
+
+.expanded {
+  animation-name: slideIn;
+  animation-duration: 1s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 @media screen and (max-width: 767.99px) {
