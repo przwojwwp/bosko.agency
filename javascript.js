@@ -34,15 +34,11 @@ logoSwitch('.section-3-logo', '.section-2-logo', '.section-1-logo');
 logoSwitch('.section-4-logo', '.section-3-logo', '.section-2-logo');
 logoSwitch('.section-5-logo', '.section-4-logo', '.section-1-logo');
 
-// Superpowers Image Animation
-
-
-
-//Starring Image Animation
+// Superpowers & Starring Image Animation
 
 window.addEventListener('scroll', function ()
 {
-    var images = document.querySelectorAll('.brand-experience , .brand-partnership, .branded-content, .creative-medium, #natalia-image, #mateusz-image, #bartosz-image');
+    var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium, #natalia-image, #mateusz-image, #bartosz-image');
     var windowHeight = window.innerHeight;
 
     for (var i = 0; i < images.length; i++)
@@ -52,11 +48,19 @@ window.addEventListener('scroll', function ()
 
         if (rect.bottom >= 0 && rect.bottom <= windowHeight)
         {
-            image.classList.add('expanded');
+            if (i % 2 === 0)
+            {
+                image.classList.add('expanded');
+                image.style.animationName = 'slideInLeft';
+            } else
+            {
+                image.classList.add('expanded');
+                image.style.animationName = 'slideInRight';
+            }
         } else
         {
             image.classList.remove('expanded');
+            image.style.animationName = '';
         }
     }
 });
-
