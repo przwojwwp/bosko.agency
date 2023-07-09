@@ -20,7 +20,6 @@ body {
   margin: 0;
   font-size: 1rem;
 }
-
 /* logo logo logo logo logo logo */
 
 .row {
@@ -68,11 +67,50 @@ body {
 
 .section-1 {
   height: 95vh;
+  width: 100vw;
   padding: 2.5%;
   padding-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  overflow: hidden; /* Dodajemy overflow: hidden, aby ukryć ewentualne przekroczenie sekcji */
+}
+
+.section-1.section-1-smaller {
+  animation-name: resizeSmaller;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.section-1.section-1-larger {
+  animation-name: resizeLarger;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes resizeSmaller {
+  from {
+    width: 100%;
+    height: 95vh;
+  }
+  to {
+    width: 60vw;
+    height: 62.5vh;
+  }
+}
+
+@keyframes resizeLarger {
+  from {
+    width: 60vw;
+    height: 62.5vh;
+  }
+  to {
+    width: 100vw;
+    height: 95vh;
+  }
 }
 
 .section-1-curtain {
@@ -103,6 +141,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.transition {
+  transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
 }
 
 .section-1-text-content {
