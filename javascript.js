@@ -9,6 +9,7 @@ const largerHeight = '95vh';
 let isSectionSmaller = false;
 let isContentLoaded = false;
 let isScrollInProgress = false;
+let isMouseScrollUsed = false;
 
 function scrollToPosition(positionY)
 {
@@ -61,7 +62,7 @@ function handleScroll(event)
 
     if (scrollY > 0)
     {
-      if (!isSectionSmaller)
+      if (!isSectionSmaller && isMouseScrollUsed)
       {
         section1.classList.remove('section-1-larger');
         section1.classList.add('section-1-smaller');
@@ -132,16 +133,23 @@ function handleScroll(event)
   }
 }
 
-window.addEventListener('scroll', handleScroll);
+function handleMouseScroll()
+{
+  isMouseScrollUsed = true;
+  window.removeEventListener('wheel', handleMouseScroll);
+}
 
+if (window.matchMedia('(min-width: 768px)').matches)
+{
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('wheel', handleMouseScroll);
+}
 
 // Superpowers Image Animation for Small Screens
 
-window.addEventListener('scroll', function ()
+if (window.matchMedia('(max-width: 767.99px)').matches)
 {
-  var mediaQuerySmall = window.matchMedia('(max-width: 767.99px)');
-
-  if (mediaQuerySmall.matches)
+  window.addEventListener('scroll', function ()
   {
     var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
     var windowHeight = window.innerHeight;
@@ -161,8 +169,8 @@ window.addEventListener('scroll', function ()
         image.style.transform = 'scale(1)';
       }
     }
-  }
-});
+  });
+}
 
 // Superpowers Image Animation for Medium and Larger Screens
 
