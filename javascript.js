@@ -1,3 +1,125 @@
+// Detect request animation frame
+var scroll =
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    // IE Fallback, you can even fallback to onscroll
+    function (callback)
+    {
+        window.setTimeout(callback, 1000 / 60);
+    };
+var lastPosition = -1;
+
+// my Variables
+var lastSection = false;
+var replaceItemTop = -1;
+var replaceItemBottom = -1;
+var replaceItemHeight = -1;
+
+// The Scroll Function
+function loop()
+{
+    var top = window.pageYOffset;
+    // my variables
+
+    // my sections to calculate stuff
+    var sections = document.querySelectorAll(".section");
+    var replaceContainer = document.querySelectorAll(".js-replace");
+    var replaceItem = document.querySelectorAll(".js-replace__item");
+
+    if (replaceItem.length > 0)
+    {
+        // get top position of item from container, because image might not have loaded
+        replaceItemTop = parseInt(
+            replaceContainer[0].getBoundingClientRect().top
+        );
+        replaceItemHeight = replaceItem[0].offsetHeight;
+        replaceItemBottom = replaceItemTop + replaceItemHeight;
+    }
+
+    var sectionTop = -1;
+    var sectionBottom = -1;
+    var currentSection = -1;
+
+    // Fire when needed
+    if (lastPosition == window.pageYOffset)
+    {
+        scroll(loop);
+        return false;
+    } else
+    {
+        lastPosition = window.pageYOffset;
+
+        // Your Function
+        Array.prototype.forEach.call(sections, function (el, i)
+        {
+            sectionTop = parseInt(el.getBoundingClientRect().top);
+            sectionBottom = parseInt(el.getBoundingClientRect().bottom);
+
+            // active section
+            if (
+                sectionTop <= replaceItemBottom &&
+                sectionBottom > replaceItemTop
+            )
+            {
+                // check if current section has bg
+                currentSection = el.classList.contains("section--bg");
+
+                // switch class depending on background image
+                if (currentSection)
+                {
+                    replaceContainer[0].classList.remove("js-replace--reverse");
+                } else
+                {
+                    replaceContainer[0].classList.add("js-replace--reverse");
+                }
+            }
+            // end active section
+
+            // if active Section hits replace area
+            if (replaceItemTop < sectionTop && sectionTop <= replaceItemBottom)
+            {
+                // animate only, if section background changed
+                if (currentSection != lastSection)
+                {
+                    document.documentElement.style.setProperty(
+                        "--replace-offset",
+                        (100 / replaceItemHeight) *
+                        parseInt(sectionTop - replaceItemTop) +
+                        "%"
+                    );
+                }
+            }
+            // end active section in replace area
+
+            // if section above replace area
+            if (replaceItemTop >= sectionTop)
+            {
+                // set offset to 0 if you scroll too fast
+                document.documentElement.style.setProperty(
+                    "--replace-offset",
+                    0 + "%"
+                );
+                // set last section to current section
+                lastSection = currentSection;
+            }
+        });
+    }
+
+    // Recall the loop
+    scroll(loop);
+}
+
+// Call the loop for the first time
+loop();
+
+window.onresize = function (event)
+{
+    loop();
+};
+
 //Animacja Reelsa w video
 
 const section1 = document.querySelector('.section-1');
@@ -13,92 +135,91 @@ let isMouseScrollUsed = false;
 
 function scrollToPosition(positionY)
 {
-  const startY = window.scrollY;
-  const distance = positionY - startY;
-  const duration = 500; // Czas trwania animacji w milisekundach
-  const startTime = performance.now();
+    const startY = window.scrollY;
+    const distance = positionY - startY;
+    const duration = 500; // Czas trwania animacji w milisekundach
+    const startTime = performance.now();
 
-  function scrollAnimation(currentTime)
-  {
-    const elapsedTime = currentTime - startTime;
-    const scrollProgress = Math.min(elapsedTime / duration, 1);
-    const scrollValue = startY + distance * scrollProgress;
-    window.scrollTo(0, scrollValue);
+    function scrollAnimation(currentTime)
+    {
+        const elapsedTime = currentTime - startTime;
+        const scrollProgress = Math.min(elapsedTime / duration, 1);
+        const scrollValue = startY + distance * scrollProgress;
+        window.scrollTo(0, scrollValue);
 
-    if (scrollProgress < 1)
-    {
-      requestAnimationFrame(scrollAnimation);
-    } else
-    {
-      isScrollInProgress = false;
+        if (scrollProgress < 1)
+        {
+            requestAnimationFrame(scrollAnimation);
+        } else
+        {
+            isScrollInProgress = false;
+        }
     }
-  }
 
-  requestAnimationFrame(scrollAnimation);
+    requestAnimationFrame(scrollAnimation);
 }
 
 function handleScroll(event)
 {
-  const scrollY = window.scrollY;
+    const scrollY = window.scrollY;
 
-  if (isScrollInProgress)
-  {
-    event.preventDefault();
-    return;
-  }
-
-  if (!isContentLoaded)
-  {
-    // Blokowanie przemieszczania się strony w dół, jeśli zawartość nie jest jeszcze załadowana
-    if (scrollY > window.innerHeight)
+    if (isScrollInProgress)
     {
-      window.scrollTo(0, window.innerHeight);
+        event.preventDefault();
+        return;
     }
-  }
 
-  if (window.matchMedia('(min-width: 768px)').matches)
-  {
-    // Wykonuj kod tylko dla ekranów o szerokości większej lub równej medium
-
-    if (scrollY > 0)
+    if (!isContentLoaded)
     {
-      if (!isSectionSmaller && isMouseScrollUsed)
-      {
-        section1.classList.remove('section-1-larger');
-        section1.classList.add('section-1-smaller');
-        section1.style.width = smallerWidth;
-        section1.style.height = smallerHeight;
-        isSectionSmaller = true;
-
-        const section1OffsetTop = section1.offsetTop;
-        const scrollPosition = section1OffsetTop + 5; // Ustal pozycję Y, do której ma być przewinięta strona (dodajemy 5 pikseli dla lepszego wyglądu)
-
-        isScrollInProgress = true;
-        scrollToPosition(scrollPosition);
-
-        setTimeout(() =>
+        // Blokowanie przemieszczania się strony w dół, jeśli zawartość nie jest jeszcze załadowana
+        if (scrollY > window.innerHeight)
         {
-          section1.innerHTML = `
+            window.scrollTo(0, window.innerHeight);
+        }
+    }
+
+    if (window.matchMedia('(min-width: 768px)').matches)
+    {
+        // Wykonuj kod tylko dla ekranów o szerokości większej lub równej medium
+
+        if (scrollY > 0)
+        {
+            if (!isSectionSmaller && isMouseScrollUsed)
+            {
+                section1.classList.remove('section-1-larger');
+                section1.classList.add('section-1-smaller');
+                section1.style.width = smallerWidth;
+                section1.style.height = smallerHeight;
+                isSectionSmaller = true;
+
+                const section1OffsetTop = section1.offsetTop;
+                const scrollPosition = section1OffsetTop + 5; // Ustal pozycję Y, do której ma być przewinięta strona (dodajemy 5 pikseli dla lepszego wyglądu)
+
+                isScrollInProgress = true;
+                scrollToPosition(scrollPosition);
+
+                setTimeout(() =>
+                {
+                    section1.innerHTML = `
             <div class="video-container">
               <video src="video/BOSKO_REEL_v4.mp4" controls></video>
             </div>
           `;
 
-          isContentLoaded = true;
-        }, 1000);
-      }
-    } else
-    {
-      if (isSectionSmaller)
-      {
-        section1.classList.remove('section-1-smaller');
-        section1.classList.add('section-1-larger');
-        section1.style.width = largerWidth;
-        section1.style.height = largerHeight;
-        isSectionSmaller = false;
+                    isContentLoaded = true;
+                }, 1000);
+            }
+        } else
+        {
+            if (isSectionSmaller)
+            {
+                section1.classList.remove('section-1-smaller');
+                section1.classList.add('section-1-larger');
+                section1.style.width = largerWidth;
+                section1.style.height = largerHeight;
+                isSectionSmaller = false;
 
-        section1.innerHTML = `
-          <div class="section-1">
+                section1.innerHTML = `
             <div class="section-1-video-wrapper">
               <div class="section-1-curtain"></div>
               <video src="video/BOSKO_REEL_v4.mp4" autoplay muted loop></video>
@@ -126,50 +247,49 @@ function handleScroll(event)
                 </div>
               </div>
             </div>
-          </div>
         `;
-      }
+            }
+        }
     }
-  }
 }
 
 function handleMouseScroll()
 {
-  isMouseScrollUsed = true;
-  window.removeEventListener('wheel', handleMouseScroll);
+    isMouseScrollUsed = true;
+    window.removeEventListener('wheel', handleMouseScroll);
 }
 
 if (window.matchMedia('(min-width: 768px)').matches)
 {
-  window.addEventListener('scroll', handleScroll);
-  window.addEventListener('wheel', handleMouseScroll);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('wheel', handleMouseScroll);
 }
 
 // Superpowers Image Animation for Small Screens
 
 if (window.matchMedia('(max-width: 767.99px)').matches)
 {
-  window.addEventListener('scroll', function ()
-  {
-    var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
-    var windowHeight = window.innerHeight;
-
-    for (var i = 0; i < images.length; i++)
+    window.addEventListener('scroll', function ()
     {
-      var image = images[i];
-      var rect = image.getBoundingClientRect();
+        var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
+        var windowHeight = window.innerHeight;
 
-      if (rect.bottom <= windowHeight / 2 && rect.bottom >= windowHeight * 0.15)
-      {
-        image.classList.add('expanded');
-        image.style.transform = 'scale(1.1)';
-      } else
-      {
-        image.classList.remove('expanded');
-        image.style.transform = 'scale(1)';
-      }
-    }
-  });
+        for (var i = 0; i < images.length; i++)
+        {
+            var image = images[i];
+            var rect = image.getBoundingClientRect();
+
+            if (rect.bottom <= windowHeight / 2 && rect.bottom >= windowHeight * 0.15)
+            {
+                image.classList.add('expanded');
+                image.style.transform = 'scale(1.1)';
+            } else
+            {
+                image.classList.remove('expanded');
+                image.style.transform = 'scale(1)';
+            }
+        }
+    });
 }
 
 // Superpowers Image Animation for Medium and Larger Screens
@@ -178,48 +298,48 @@ var mediumImages = document.querySelectorAll('.brand-experience, .brand-partners
 
 for (var i = 0; i < mediumImages.length; i++)
 {
-  var image = mediumImages[i];
+    var image = mediumImages[i];
 
-  image.addEventListener('mouseenter', function ()
-  {
-    this.classList.add('expanded');
-    this.style.transform = 'scale(1.1)';
-  });
+    image.addEventListener('mouseenter', function ()
+    {
+        this.classList.add('expanded');
+        this.style.transform = 'scale(1.1)';
+    });
 
-  image.addEventListener('mouseleave', function ()
-  {
-    this.classList.remove('expanded');
-    this.style.transform = 'scale(1)';
-  });
+    image.addEventListener('mouseleave', function ()
+    {
+        this.classList.remove('expanded');
+        this.style.transform = 'scale(1)';
+    });
 }
 
 // Starring Image Animation
 
 window.addEventListener('scroll', function ()
 {
-  var images = document.querySelectorAll('#natalia-image, #mateusz-image, #bartosz-image');
-  var windowHeight = window.innerHeight;
+    var images = document.querySelectorAll('#natalia-image, #mateusz-image, #bartosz-image');
+    var windowHeight = window.innerHeight;
 
-  for (var i = 0; i < images.length; i++)
-  {
-    var image = images[i];
-    var rect = image.getBoundingClientRect();
+    for (var i = 0; i < images.length; i++)
+    {
+        var image = images[i];
+        var rect = image.getBoundingClientRect();
 
-    if (rect.bottom >= 0 && rect.bottom <= windowHeight)
-    {
-      if (i % 2 === 0)
-      {
-        image.classList.add('expanded');
-        image.style.animationName = 'slideInLeft';
-      } else
-      {
-        image.classList.add('expanded');
-        image.style.animationName = 'slideInRight';
-      }
-    } else
-    {
-      image.classList.remove('expanded');
-      image.style.animationName = '';
+        if (rect.bottom >= 0 && rect.bottom <= windowHeight)
+        {
+            if (i % 2 === 0)
+            {
+                image.classList.add('expanded');
+                image.style.animationName = 'slideInLeft';
+            } else
+            {
+                image.classList.add('expanded');
+                image.style.animationName = 'slideInRight';
+            }
+        } else
+        {
+            image.classList.remove('expanded');
+            image.style.animationName = '';
+        }
     }
-  }
 });
