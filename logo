@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700&family=Raleway:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+		rel="stylesheet">
+	<style>
+		/* variables */
+		:root {
+			--black: #000;
+			--white: #fff;
+			--color-1: #000;
+			--gutter: 2rem;
+			/* this value is going to be changed by javascript */
+			--replace-offset: 50%;
+			--replace-offset-2: calc((100% - var(--replace-offset)) * -1)
+		}
+
+		/* set image position */
+		img {
+			vertical-align: bottom;
+		}
+
+		/* Sticky Footer */
+		.body {
+			display: grid;
+			grid-template-rows: 1fr auto;
+			min-height: 100vh;
+		}
+
+		/* without fixed header this makes no sense */
+		.header {
+			position: fixed;
+			top: 5rem;
+			transform: translateY(-50%);
+			left: 5rem;
+			padding: calc(var(--gutter) * .5);
+			text-align: center;
+		}
+
+		.logo {
+			display: inline-block;
+			padding-bottom: calc(var(--gutter) * .25);
+			border-bottom: 0.2em solid black;
+			font-size: 2em;
+			font-family: 'Alexandria', sans-serif;
+		}
+
+		.logo--invert {
+			background-color: var(--black);
+			color: var(--white);
+			border-color: var(--white);
+		}
+
+		.section {
+			padding-top: var(--gutter);
+			padding-bottom: var(--gutter);
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			text-align: center;
+		}
+
+		.section--bg {
+			background-color: var(--color-1);
+		}
+
+		/**
+  This is the interesting part
+**/
+
+		/* align content above each other without absolute */
+		.js-replace {
+			display: grid;
+		}
+
+		.js-replace__item {
+			grid-row: -1 / 1;
+			grid-column: -1 / 1;
+			overflow: hidden;
+			will-change: transform;
+		}
+
+		/* item to replace with */
+		.js-replace__item {
+			transform: translateY(calc(var(--replace-offset) * 1));
+		}
+
+		.js-replace__content {
+			/* fixes problem with calculating correct height in js */
+			border: 1px solid transparent;
+			will-change: transform;
+
+			transform: translateY(calc(var(--replace-offset) * -1));
+		}
+
+		/* previous replace item*/
+		.js-replace__item--active {
+			transform: translateY(calc(var(--replace-offset-2) * 1));
+		}
+
+		.js-replace__item--active .js-replace__content {
+			transform: translateY(calc(var(--replace-offset-2) * -1));
+		}
+
+
+		/* REVERSE ANIMATION */
+		.js-replace--reverse .js-replace__item {
+			transform: translateY(calc(var(--replace-offset-2) * 1));
+		}
+
+		.js-replace--reverse .js-replace__content {
+			transform: translateY(calc(var(--replace-offset-2) * -1));
+		}
+
+		/* previous replace item*/
+		.js-replace--reverse .js-replace__item--active {
+			transform: translateY(calc(var(--replace-offset) * 1));
+		}
+
+		.js-replace--reverse .js-replace__item--active .js-replace__content {
+			transform: translateY(calc(var(--replace-offset) * -1));
+		}
+	</style>
+</head>
+
+<body class="body">
+	<header class="header">
+		<!-- replace content -->
+		<div class="header__logo  js-replace">
+			<!-- item to replace -->
+			<div class="js-replace__item  js-replace__item--active">
+				<div class="js-replace__content">
+					<div class="logo">Bosko</div>
+				</div>
+			</div>
+			<!-- end item to replace -->
+
+			<!-- item to replace with -->
+			<div class="js-replace__item">
+				<div class="js-replace__content">
+					<div class="logo  logo--invert">Bosko</div>
+				</div>
+			</div>
+			<!-- end item to replace with -->
+		</div>
+		<!-- end replace content -->
+	</header>
+
+	<main class="main">
+		<section class="section--1  section">
+			<h1 class="section__title">
+
+			</h1>
+		</section>
+
+		<section class="section--2  section  section--bg">
+			<h1 class="section__title">
+
+			</h1>
+		</section>
+
+		<section class="section--3  section">
+			<h1 class="section__title">
+
+			</h1>
+		</section>
+
+		<section class="section--4  section  section--bg">
+			<h1 class="section__title">
+
+			</h1>
+		</section>
+
+		<section class="section--5  section">
+			<h1 class="section__title">
+
+			</h1>
+		</section>
+	</main>
+</body>
+<script>
+	// Detect request animation frame
+	var scroll =
+		window.requestAnimationFrame ||
+		window.webkitRequestAnimationFrame ||
+		window.mozRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		window.oRequestAnimationFrame ||
+		// IE Fallback, you can even fallback to onscroll
+		function (callback) {
+			window.setTimeout(callback, 1000 / 60);
+		};
+	var lastPosition = -1;
+
+	// my Variables
+	var lastSection = false;
+	var replaceItemTop = -1;
+	var replaceItemBottom = -1;
+	var replaceItemHeight = -1;
+
+	// The Scroll Function
+	function loop() {
+		var top = window.pageYOffset;
+		// my variables
+
+		// my sections to calculate stuff
+		var sections = document.querySelectorAll(".section");
+		var replaceContainer = document.querySelectorAll(".js-replace");
+		var replaceItem = document.querySelectorAll(".js-replace__item");
+
+		if (replaceItem.length > 0) {
+			// get top position of item from container, because image might not have loaded
+			replaceItemTop = parseInt(replaceContainer[0].getBoundingClientRect().top);
+			replaceItemHeight = replaceItem[0].offsetHeight;
+			replaceItemBottom = replaceItemTop + replaceItemHeight;
+		}
+
+		var sectionTop = -1;
+		var sectionBottom = -1;
+		var currentSection = -1;
+
+		// Fire when needed
+		if (lastPosition == window.pageYOffset) {
+			scroll(loop);
+			return false;
+		} else {
+			lastPosition = window.pageYOffset;
+
+			// Your Function
+			Array.prototype.forEach.call(sections, function (el, i) {
+				sectionTop = parseInt(el.getBoundingClientRect().top);
+				sectionBottom = parseInt(el.getBoundingClientRect().bottom);
+
+				// active section
+				if (sectionTop <= replaceItemBottom && sectionBottom > replaceItemTop) {
+					// check if current section has bg
+					currentSection = el.classList.contains("section--bg");
+
+					// switch class depending on background image
+					if (currentSection) {
+						replaceContainer[0].classList.remove("js-replace--reverse");
+					} else {
+						replaceContainer[0].classList.add("js-replace--reverse");
+					}
+				}
+				// end active section
+
+				// if active Section hits replace area
+				if (replaceItemTop < sectionTop && sectionTop <= replaceItemBottom) {
+					// animate only, if section background changed
+					if (currentSection != lastSection) {
+						document.documentElement.style.setProperty(
+							"--replace-offset",
+							(100 / replaceItemHeight) * parseInt(sectionTop - replaceItemTop) + "%"
+						);
+					}
+				}
+				// end active section in replace area
+
+				// if section above replace area
+				if (replaceItemTop >= sectionTop) {
+					// set offset to 0 if you scroll too fast
+					document.documentElement.style.setProperty("--replace-offset", 0 + "%");
+					// set last section to current section
+					lastSection = currentSection;
+				}
+			});
+		}
+
+		// Recall the loop
+		scroll(loop);
+	}
+
+	// Call the loop for the first time
+	loop();
+
+	window.onresize = function (event) {
+		loop();
+	};
+</script>
+
+</html>
