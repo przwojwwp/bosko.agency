@@ -127,7 +127,7 @@ window.addEventListener('wheel', function (event)
 {
     event.preventDefault();
 
-    if (!isScrolling)
+    if (!isScrolling && window.innerWidth >= 768)
     {
         var deltaY = event.deltaY;
         var scrollAmount = Math.abs(deltaY) > 1 ? Math.abs(deltaY) : 1; // Dostosowanie prędkości przewijania
