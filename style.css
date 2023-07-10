@@ -1071,3 +1071,9 @@ img {
 #scroll-to-top-btn:hover {
   color: #ee01cf;
 }
+
+@media screen and (max-width: 767.99px) {
+  #scroll-to-top-btn:hover {
+    color: white;
+  }
+}

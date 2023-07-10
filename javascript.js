@@ -391,13 +391,13 @@ window.addEventListener('scroll', function ()
 // Button to Top
 
 let mybutton = document.getElementById("scroll-to-top-btn");
+var scrollThreshold = 0.95 * (document.documentElement.scrollHeight - window.innerHeight);
 
-// Oblicz 10% wysokości strony
-var scrollThreshold = 0.98 * (document.documentElement.scrollHeight);
+function updateScrollThreshold()
+{
+    scrollThreshold = 0.95 * (document.documentElement.scrollHeight - window.innerHeight);
+}
 
-
-
-// Sprawdź, czy strona została przewinięta o 10% lub więcej
 window.addEventListener("scroll", function ()
 {
     if (window.scrollY > scrollThreshold)
@@ -409,7 +409,11 @@ window.addEventListener("scroll", function ()
     }
 });
 
-// Po kliknięciu przycisku przewiń stronę na górę
+window.addEventListener("resize", function ()
+{
+    updateScrollThreshold();
+});
+
 mybutton.addEventListener("click", function ()
 {
     window.scrollTo({
