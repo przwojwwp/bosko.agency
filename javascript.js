@@ -160,11 +160,11 @@ window.addEventListener('wheel', function (event)
             }
 
             // Dodaj wartość poprzedniego przewinięcia do nowego przewinięcia
-            accumulatedScroll += deltaY > 0 ? 50 : -50;
+            accumulatedScroll += deltaY > 0 ? 100 : -100;
 
             // Przewiń stronę o sumę przewinięć + 100 pikseli
             window.scrollBy({
-                top: accumulatedScroll + (deltaY > 0 ? 70 : -70),
+                top: accumulatedScroll + (deltaY > 0 ? 100 : -100),
                 behavior: 'smooth'
             });
         }
