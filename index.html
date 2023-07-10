@@ -10,6 +10,10 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
 
     <link rel="stylesheet" href="style.css" />
     <script
@@ -19,29 +23,28 @@
   </head>
 
   <body class="body">
-<div class="container-fluid p-0 m-0">
-
-    <header class="header">
-      <!-- replace content -->
-      <div class="header__logo js-replace">
-        <!-- item to replace -->
-        <div class="js-replace__item js-replace__item--active">
-          <div class="js-replace__content">
-            <div class="logo">Bosko</div>
+    <div class="container-fluid p-0 m-0">
+      <header class="header">
+        <!-- replace content -->
+        <div class="header__logo js-replace">
+          <!-- item to replace -->
+          <div class="js-replace__item js-replace__item--active">
+            <div class="js-replace__content">
+              <div class="logo">Bosko</div>
+            </div>
           </div>
-        </div>
-        <!-- end item to replace -->
+          <!-- end item to replace -->
 
-        <!-- item to replace with -->
-        <div class="js-replace__item">
-          <div class="js-replace__content">
-            <div class="logo logo--invert">Bosko</div>
+          <!-- item to replace with -->
+          <div class="js-replace__item">
+            <div class="js-replace__content">
+              <div class="logo logo--invert">Bosko</div>
+            </div>
           </div>
+          <!-- end item to replace with -->
         </div>
-        <!-- end item to replace with -->
-      </div>
-      <!-- end replace content -->
-    </header>
+        <!-- end replace content -->
+      </header>
 
       <section class="section--1 section">
         <div class="row p-0 m-0">
@@ -49,7 +52,12 @@
             <div class="section-1">
               <div class="section-1-video-wrapper">
                 <div class="section-1-curtain"></div>
-                <video src="video/BOSKO_REEL_v4.mp4" autoplay muted loop></video>
+                <video
+                  src="video/BOSKO_REEL_v4.mp4"
+                  autoplay
+                  muted
+                  loop
+                ></video>
               </div>
               <div class="section-1-text-content">
                 <div class="title">
@@ -93,7 +101,9 @@
                 that allows both to grow, build an audience <br />
                 and drive conversation.
               </p>
-              <div class="section-2-subtitle">We're based in Warsaw, Poland.</div>
+              <div class="section-2-subtitle">
+                We're based in Warsaw, Poland.
+              </div>
             </div>
           </div>
         </div>
@@ -251,7 +261,9 @@
                     </h3>
                     <p>
                       <span class="s-4-mail-to">
-                        <a href="mailto:hello@bosko.agency">hello@bosko.agency</a>
+                        <a href="mailto:hello@bosko.agency"
+                          >hello@bosko.agency</a
+                        >
                       </span>
                     </p>
                   </div>
@@ -263,7 +275,9 @@
       </section>
 
       <section class="section--5 section">
-        <div class="row p-0 m-0 d-flex justify-content-center align-items-center">
+        <div
+          class="row p-0 m-0 d-flex justify-content-center align-items-center"
+        >
           <div class="col-12 p-0 section-5">
             <div class="section-5-text-content">
               <h2>Let's get social</h2>
@@ -313,16 +327,52 @@
               bosko.agency<br />
             </div>
           </div>
+          <button
+            onclick="topFunction()"
+            id="scroll-to-top-btn"
+            title="Go to top"
+          >
+            <i class="fas fa-arrow-up"></i>
+            <span>TOP</span>
+          </button>
         </div>
       </section>
-  </div>
-  </body>
+      <footer class="bg-black d-flex flex-column align-items-center">
+        <div class="rights">
+          &copy; 2023, Bosko.agency, All rights reserved.
+        </div>
+        <div class="footer-icons">
+          <span class="footer-linkedin">
+            <a
+              href="https://www.linkedin.com/company/bosko-agency/"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin-in" style="color: #8d8a8c"></i>
+            </a>
+          </span>
+          <span class="footer-instagram ml-2">
+            <a href="https://www.instagram.com/bosko.agency/" target="_blank">
+              <i class="fab fa-instagram" style="color: #8d8a8c"></i>
+            </a>
+          </span>
+        </div>
+        <div class="privacy-terms-contact">
+          <span class="privacy"
+            ><a href="#" target="_blank">Privacy Policy</a></span
+          >
+          <span class="terms"
+            ><a href="#" target="_blank">Terms and Conditions</a></span
+          >
+          <span class="contact"><a href="#" target="_blank">Contact</a></span>
+        </div>
+      </footer>
+    </div>
 
     <script
-    src="https://code.jquery.com/jquery-3.7.0.min.js"
-    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-    crossorigin="anonymous"
-  ></script>
-  <script src="javascript.js"></script>
-</body>
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <script src="javascript.js"></script>
+  </body>
 </html>

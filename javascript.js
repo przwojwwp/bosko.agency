@@ -121,7 +121,9 @@ window.onresize = function (event)
 };
 
 // Blokowanie ekranu dla animacji reelsa w video
+
 var isScrolling = false;
+var accumulatedScroll = 0; // Zmienna przechowująca sumę przewinięć
 
 window.addEventListener('wheel', function (event)
 {
@@ -137,22 +139,39 @@ window.addEventListener('wheel', function (event)
             isScrolling = true;
 
             // Przesuń stronę
-            window.scrollBy(0, deltaY > 0 ? scrollAmount : -scrollAmount);
+            window.scrollBy({
+                top: deltaY > 0 ? scrollAmount : -scrollAmount,
+                behavior: 'smooth'
+            });
 
             // Zablokuj używanie scrolla na krótki okres czasu
             setTimeout(function ()
             {
                 isScrolling = false;
-            }, 1500);
+            }, 1100);
+
+            accumulatedScroll = 0; // Zresetuj wartość sumy przewinięć
         } else
         {
-            // Jeśli strona nie znajduje się na samej górze, przewiń stronę o 300 pikseli
-            window.scrollBy(0, deltaY > 0 ? 300 : -300);
+            if ((deltaY > 0 && accumulatedScroll < 0) || (deltaY < 0 && accumulatedScroll > 0))
+            {
+                // Jeśli scroll jest w przeciwnym kierunku, zresetuj accumulatedScroll do 0
+                accumulatedScroll = 0;
+            }
+
+            // Dodaj wartość poprzedniego przewinięcia do nowego przewinięcia
+            accumulatedScroll += deltaY > 0 ? 50 : -50;
+
+            // Przewiń stronę o sumę przewinięć + 100 pikseli
+            window.scrollBy({
+                top: accumulatedScroll + (deltaY > 0 ? 70 : -70),
+                behavior: 'smooth'
+            });
         }
     }
 }, { passive: false });
 
-//Animacja Reelsa w video
+//Przesuniecie ekranu o 1px dla Animacji Reelsa w video
 
 const section1 = document.querySelector('.section-1');
 const smallerWidth = '60vw';
@@ -169,7 +188,7 @@ function scrollToPosition(positionY)
 {
     const startY = window.scrollY;
     const distance = positionY - startY;
-    const duration = 500; // Czas trwania animacji w milisekundach
+    const duration = 1000; // Czas trwania animacji w milisekundach
     const startTime = performance.now();
 
     function scrollAnimation(currentTime)
@@ -191,24 +210,11 @@ function scrollToPosition(positionY)
     requestAnimationFrame(scrollAnimation);
 }
 
+//Animacja Reels w video
+
 function handleScroll(event)
 {
     const scrollY = window.scrollY;
-
-    if (isScrollInProgress)
-    {
-        event.preventDefault();
-        return;
-    }
-
-    if (!isContentLoaded)
-    {
-        // Blokowanie przemieszczania się strony w dół, jeśli zawartość nie jest jeszcze załadowana
-        if (scrollY > window.innerHeight)
-        {
-            window.scrollTo(0, window.innerHeight);
-        }
-    }
 
     if (window.matchMedia('(min-width: 768px)').matches)
     {
@@ -223,6 +229,12 @@ function handleScroll(event)
                 section1.style.width = smallerWidth;
                 section1.style.height = smallerHeight;
                 isSectionSmaller = true;
+
+                const titleInnerElement = section1.querySelector('.title-inner');
+                if (titleInnerElement)
+                {
+                    titleInnerElement.style.display = 'none';
+                }
 
                 const section1OffsetTop = section1.offsetTop;
                 const scrollPosition = section1OffsetTop + 5; // Ustal pozycję Y, do której ma być przewinięta strona (dodajemy 5 pikseli dla lepszego wyglądu)
@@ -374,4 +386,34 @@ window.addEventListener('scroll', function ()
             image.style.animationName = '';
         }
     }
+});
+
+// Button to Top
+
+let mybutton = document.getElementById("scroll-to-top-btn");
+
+// Oblicz 10% wysokości strony
+var scrollThreshold = 0.98 * (document.documentElement.scrollHeight);
+
+
+
+// Sprawdź, czy strona została przewinięta o 10% lub więcej
+window.addEventListener("scroll", function ()
+{
+    if (window.scrollY > scrollThreshold)
+    {
+        mybutton.style.display = "block";
+    } else
+    {
+        mybutton.style.display = "none";
+    }
+});
+
+// Po kliknięciu przycisku przewiń stronę na górę
+mybutton.addEventListener("click", function ()
+{
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });

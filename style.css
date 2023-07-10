@@ -43,6 +43,13 @@ img {
   text-align: center;
 }
 
+@media screen and (max-width: 767.99px) {
+  .header {
+    top: 3.5%;
+    left: 2%;
+  }
+}
+
 .logo {
   color: black;
   display: inline-block;
@@ -50,6 +57,13 @@ img {
   border-bottom: 0.2em solid black;
   font-size: 2.5vw;
   font-family: "BiennaleFont";
+}
+
+@media screen and (max-width: 767.99px) {
+  .logo {
+    font-size: 3vw;
+    padding-bottom: calc(var(--gutter) * 0.1);
+  }
 }
 
 .logo--invert {
@@ -225,7 +239,7 @@ img {
 @media screen and (max-width: 767.99px) {
   .section-1-text-content {
     font-size: 8vw;
-    top: 50%;
+    top: 35%;
     left: 50%;
   }
 }
@@ -1000,7 +1014,7 @@ img {
 .footer-linkedin,
 .footer-instagram {
   padding: 3vw;
-  font-size: 5vw;
+  font-size: 3vw;
 }
 
 .privacy-terms-contact {
@@ -1037,7 +1051,23 @@ img {
   }
 }
 
-/* Wodo Tryski */
-.section-transition {
-  transition: all 0.5s ease;
+/* Button to Top */
+#scroll-to-top-btn {
+  display: none;
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  bottom: 10%;
+  right: 30px;
+  z-index: 99;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+#scroll-to-top-btn:hover {
+  color: #ee01cf;
 }
