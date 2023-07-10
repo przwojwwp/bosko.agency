@@ -120,6 +120,38 @@ window.onresize = function (event)
     loop();
 };
 
+// Blokowanie ekranu dla animacji reelsa w video
+var isScrolling = false;
+
+window.addEventListener('wheel', function (event)
+{
+    event.preventDefault();
+
+    if (!isScrolling)
+    {
+        var deltaY = event.deltaY;
+        var scrollAmount = Math.abs(deltaY) > 1 ? Math.abs(deltaY) : 1; // Dostosowanie prędkości przewijania
+
+        if (window.pageYOffset === 0)
+        {
+            isScrolling = true;
+
+            // Przesuń stronę
+            window.scrollBy(0, deltaY > 0 ? scrollAmount : -scrollAmount);
+
+            // Zablokuj używanie scrolla na krótki okres czasu
+            setTimeout(function ()
+            {
+                isScrolling = false;
+            }, 1500);
+        } else
+        {
+            // Jeśli strona nie znajduje się na samej górze, przewiń stronę o 300 pikseli
+            window.scrollBy(0, deltaY > 0 ? 300 : -300);
+        }
+    }
+}, { passive: false });
+
 //Animacja Reelsa w video
 
 const section1 = document.querySelector('.section-1');

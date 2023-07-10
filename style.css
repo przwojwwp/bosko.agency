@@ -36,18 +36,19 @@ img {
 /* without fixed header this makes no sense */
 .header {
   position: fixed;
-  top: 5rem;
+  top: 3.5vw;
   transform: translateY(-50%);
-  left: 5rem;
+  left: 5vw;
   padding: calc(var(--gutter) * 0.5);
   text-align: center;
 }
 
 .logo {
+  color: black;
   display: inline-block;
   padding-bottom: calc(var(--gutter) * 0.25);
   border-bottom: 0.2em solid black;
-  font-size: 2em;
+  font-size: 2.5vw;
   font-family: "BiennaleFont";
 }
 
@@ -69,8 +70,8 @@ img {
 }
 
 /**
-  This is the interesting part
-**/
+    This is the interesting part
+  **/
 
 /* align content above each other without absolute */
 .js-replace {
@@ -272,9 +273,8 @@ img {
 
 .video-container {
   position: relative;
-  width: 55vw;
-  height: 52.5vh;
-  margin-top: 12vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
