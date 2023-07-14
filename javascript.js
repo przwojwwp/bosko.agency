@@ -246,7 +246,7 @@ function handleScroll(event)
                 {
                     section1.innerHTML = `
             <div class="video-container">
-              <video src="video/BOSKO_REEL_v4.mp4" controls></video>
+              <video src="video/BOSKO_REEL_v4.mp4" controls poster="img/poster.png"></video>
             </div>
           `;
 
@@ -358,66 +358,52 @@ for (var i = 0; i < mediumImages.length; i++)
 }
 
 // Starring Image Animation
+// Pobieranie wszystkich obrazów z klasą 'img-fluid' wewnątrz sekcji-4-img-container
+const images = document.querySelectorAll('.section-4-img-container .img-fluid');
 
-window.addEventListener('scroll', function ()
+// Ustawienie początkowego stanu obrazów na niewidoczne
+images.forEach(image =>
 {
-    var images = document.querySelectorAll('#natalia-image, #mateusz-image, #bartosz-image');
-    var windowHeight = window.innerHeight;
-
-    for (var i = 0; i < images.length; i++)
-    {
-        var image = images[i];
-        var rect = image.getBoundingClientRect();
-
-        if (rect.bottom >= 0 && rect.bottom <= windowHeight)
-        {
-            if (i % 2 === 0)
-            {
-                image.classList.add('expanded');
-                image.style.animationName = 'slideInLeft';
-            } else
-            {
-                image.classList.add('expanded');
-                image.style.animationName = 'slideInRight';
-            }
-        } else
-        {
-            image.classList.remove('expanded');
-            image.style.animationName = '';
-        }
-    }
+    image.style.opacity = '0';
 });
+
+// Funkcja do obsługi efektu pojawiania się obrazów
+function fadeInImages()
+{
+    // Sprawdzanie, czy obraz jest w widoku przeglądarki
+    images.forEach((image, index) =>
+    {
+        const rect = image.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        // Jeśli obraz jest w widoku przeglądarki
+        if (rect.top <= windowHeight)
+        {
+            // Opóźnienie pojawiania się obrazu o 0.5 sekundy * indeks obrazu
+            const delay = 500 * index;
+
+            // Ustawienie animacji na obrazie po opóźnieniu
+            setTimeout(() =>
+            {
+                image.style.animation = 'fadeIn 1s forwards ease';
+            }, delay);
+        }
+    });
+}
+
+// Obsługa pojawiania się obrazów przy załadowaniu strony
+window.addEventListener('load', fadeInImages);
+
+// Obsługa pojawiania się obrazów przy przewijaniu strony
+window.addEventListener('scroll', fadeInImages);
+
 
 // Button to Top
 
-let mybutton = document.getElementById("scroll-to-top-btn");
-var scrollThreshold = 0.95 * (document.documentElement.scrollHeight - window.innerHeight);
-
-function updateScrollThreshold()
-{
-    scrollThreshold = 0.95 * (document.documentElement.scrollHeight - window.innerHeight);
-}
-
-window.addEventListener("scroll", function ()
-{
-    if (window.scrollY > scrollThreshold)
-    {
-        mybutton.style.display = "block";
-    } else
-    {
-        mybutton.style.display = "none";
-    }
-});
-
-window.addEventListener("resize", function ()
-{
-    updateScrollThreshold();
-});
-
-mybutton.addEventListener("click", function ()
+function topFunction()
 {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-});
+}

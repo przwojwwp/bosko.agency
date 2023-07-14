@@ -173,14 +173,14 @@ img {
     height: 95vh;
   }
   to {
-    width: 60vw;
+    width: 55vw;
     height: 62.5vh;
   }
 }
 
 @keyframes resizeLarger {
   from {
-    width: 60vw;
+    width: 55vw;
     height: 62.5vh;
   }
   to {
@@ -217,6 +217,13 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.video-container {
+  position: relative;
+  width: 96%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .transition {
@@ -283,13 +290,6 @@ img {
     padding: 0;
     margin-top: 2vh;
   }
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
 /* Small screens (maksymalna szerokość: 767px) */
@@ -567,6 +567,7 @@ img {
 }
 
 .superpower-description-text p {
+  text-align: start;
   color: #8d8a8c;
   font-size: 100%;
   white-space: nowrap;
@@ -660,45 +661,44 @@ img {
   padding: 0;
   position: relative;
   overflow: hidden;
+  animation-name: fadeIn;
+  opacity: 1;
+}
+
+.section-4-img-container {
+  width: auto;
+  align-items: top;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-4-img-container img {
   width: 24vw;
   margin: 0 20px 10px 20px;
-  opacity: 1;
+  opacity: 0;
 }
 
-.expanded {
-  animation-duration: 3s;
+.section-4-img-container img.expanded {
+  animation-name: fadeIn;
+  animation-duration: 2s; /* Zmieniona wartość na 2 sekundy */
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
 }
 
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
+  100% {
+    opacity: 1;
   }
 }
 
 @media screen and (max-width: 767.99px) {
   .section-4-img-container img {
     width: 45vw;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  #mateusz-image {
-    animation-delay: var(--delay, 2s);
   }
 }
 
@@ -715,6 +715,7 @@ img {
   margin: 6% 0 4% 0;
   white-space: nowrap;
   font-weight: bold;
+  text-align: start;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -739,6 +740,7 @@ img {
   color: #8d8a8c;
   font-size: 100%;
   white-space: nowrap;
+  text-align: start;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -1053,12 +1055,11 @@ img {
 
 /* Button to Top */
 #scroll-to-top-btn {
-  display: none;
-  position: fixed;
-  width: 80px;
-  height: 80px;
+  position: absolute;
   bottom: 10%;
   right: 30px;
+  width: 80px;
+  height: 80px;
   z-index: 99;
   font-size: 20px;
   border: none;
