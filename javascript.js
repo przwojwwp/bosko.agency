@@ -120,193 +120,193 @@ window.onresize = function (event)
     loop();
 };
 
-// Blokowanie ekranu dla animacji reelsa w video
-
-var isScrolling = false;
-var accumulatedScroll = 0; // Zmienna przechowująca sumę przewinięć
-
-window.addEventListener('wheel', function (event)
+// Function to adjust the font size based on the current width and height
+function adjustFontSize(width, height)
 {
-    event.preventDefault();
+    const textContent = document.querySelector(".section-1-text-content");
+    const maxWidth = 96; // Maximum width at which the font size remains 7vw
+    const maxHeight = 96; // Maximum height at which the font size remains 7vw
+    const maxFontSize = 7; // The maximum font size in vw
 
-    if (!isScrolling && window.innerWidth >= 768)
-    {
-        var deltaY = event.deltaY;
-        var scrollAmount = Math.abs(deltaY) > 1 ? Math.abs(deltaY) : 1; // Dostosowanie prędkości przewijania
+    // Calculate the font size for width and height separately
+    const widthFontSize = (width / maxWidth) * maxFontSize;
+    const heightFontSize = (height / maxHeight) * maxFontSize;
 
-        if (window.pageYOffset === 0)
-        {
-            isScrolling = true;
+    // Use the smaller font size to maintain the aspect ratio of the text
+    const fontSize = Math.min(widthFontSize, heightFontSize);
 
-            // Przesuń stronę
-            window.scrollBy({
-                top: deltaY > 0 ? scrollAmount : -scrollAmount,
-                behavior: 'smooth'
-            });
-
-            // Zablokuj używanie scrolla na krótki okres czasu
-            setTimeout(function ()
-            {
-                isScrolling = false;
-            }, 1100);
-
-            accumulatedScroll = 0; // Zresetuj wartość sumy przewinięć
-        } else
-        {
-            if ((deltaY > 0 && accumulatedScroll < 0) || (deltaY < 0 && accumulatedScroll > 0))
-            {
-                // Jeśli scroll jest w przeciwnym kierunku, zresetuj accumulatedScroll do 0
-                accumulatedScroll = 0;
-            }
-
-            // Dodaj wartość poprzedniego przewinięcia do nowego przewinięcia
-            accumulatedScroll += deltaY > 0 ? 100 : -100;
-
-            // Przewiń stronę o sumę przewinięć + 100 pikseli
-            window.scrollBy({
-                top: accumulatedScroll + (deltaY > 0 ? 100 : -100),
-                behavior: 'smooth'
-            });
-        }
-    }
-}, { passive: false });
-
-//Przesuniecie ekranu o 1px dla Animacji Reelsa w video
-
-const section1 = document.querySelector('.section-1');
-const smallerWidth = '60vw';
-const smallerHeight = '62.5vh';
-const largerWidth = '100vw';
-const largerHeight = '95vh';
-
-let isSectionSmaller = false;
-let isContentLoaded = false;
-let isScrollInProgress = false;
-let isMouseScrollUsed = false;
-
-function scrollToPosition(positionY)
-{
-    const startY = window.scrollY;
-    const distance = positionY - startY;
-    const duration = 1000; // Czas trwania animacji w milisekundach
-    const startTime = performance.now();
-
-    function scrollAnimation(currentTime)
-    {
-        const elapsedTime = currentTime - startTime;
-        const scrollProgress = Math.min(elapsedTime / duration, 1);
-        const scrollValue = startY + distance * scrollProgress;
-        window.scrollTo(0, scrollValue);
-
-        if (scrollProgress < 1)
-        {
-            requestAnimationFrame(scrollAnimation);
-        } else
-        {
-            isScrollInProgress = false;
-        }
-    }
-
-    requestAnimationFrame(scrollAnimation);
+    // Apply the font size to the text content
+    textContent.style.fontSize = fontSize + "vw";
 }
 
-//Animacja Reels w video
-
-function handleScroll(event)
+// Function to adjust the position of the text content
+function adjustTextPosition()
 {
-    const scrollY = window.scrollY;
+    const textContent = document.querySelector(".section-1-text-content");
+    const section1 = document.querySelector(".section-1");
+    const initialTop = 48; // Initial top position in percentage (50%)
+    const finalTop = 30; // Final top position in percentage (32%)
 
-    if (window.matchMedia('(min-width: 768px)').matches)
+    // Calculate the interpolation factor based on the width and height
+    const interpolationFactor = (initialWidth - width) / (initialWidth - 64);
+    const topPosition = initialTop - interpolationFactor * (initialTop - finalTop);
+
+    // Apply the new top position using CSS top property
+    textContent.style.top = topPosition + "%";
+}
+
+// Function to adjust the font size and update the width and height
+function updateSize()
+{
+    section1.style.width = width + "vw";
+    section1.style.height = height + "vh";
+    adjustFontSize(width, height);
+    adjustTextPosition();
+}
+
+// Global variable to track content section change
+let isContentSectionChanged = false;
+
+//Reels animation
+
+const containerFluid = document.querySelector(".container-fluid");
+const section1 = document.querySelector(".section-1");
+const initialWidth = 100;
+const initialHeight = 96;
+let width = initialWidth;
+let height = initialHeight;
+let pageHolder = true;
+let timeoutId;
+let sectionResize = true;
+let isSectionChanged = false;
+
+// Function to toggle the "overflow: hidden" class on the body based on pageHolder value
+function toggleBodyOverflow()
+{
+    document.body.style.overflow = pageHolder ? "hidden" : "auto";
+}
+
+// Function to set pageHolder and toggle body overflow
+function setPageHolder(value, delay)
+{
+    if (timeoutId) clearTimeout(timeoutId); // Clear previous timeout, if any
+
+    timeoutId = setTimeout(function ()
     {
-        // Wykonuj kod tylko dla ekranów o szerokości większej lub równej medium
+        pageHolder = value;
+        toggleBodyOverflow(); // Toggle body overflow based on the new pageHolder value
+    }, delay);
+}
 
-        if (scrollY > 0)
+// Function to adjust the font size and update the width and height
+function updateSize()
+{
+    section1.style.width = width + "vw";
+    section1.style.height = height + "vh";
+    adjustFontSize(width, height);
+    adjustTextPosition();
+}
+
+// Obsługa zdarzenia scroll na przycisku myszy
+containerFluid.addEventListener("wheel", function (event)
+{
+    if (event.deltaY < 0)
+    {
+        // Scroll w górę
+        if (scrollY === 0 && width < initialWidth && height < initialHeight)
         {
-            if (!isSectionSmaller && isMouseScrollUsed)
-            {
-                section1.classList.remove('section-1-larger');
-                section1.classList.add('section-1-smaller');
-                section1.style.width = smallerWidth;
-                section1.style.height = smallerHeight;
-                isSectionSmaller = true;
-
-                const titleInnerElement = section1.querySelector('.title-inner');
-                if (titleInnerElement)
-                {
-                    titleInnerElement.style.display = 'none';
-                }
-
-                const section1OffsetTop = section1.offsetTop;
-                const scrollPosition = section1OffsetTop + 5; // Ustal pozycję Y, do której ma być przewinięta strona (dodajemy 5 pikseli dla lepszego wyglądu)
-
-                isScrollInProgress = true;
-                scrollToPosition(scrollPosition);
-
-                setTimeout(() =>
-                {
-                    section1.innerHTML = `
-            <div class="video-container">
-              <video src="video/BOSKO_REEL_v4.mp4" controls poster="img/poster.png"></video>
-            </div>
-          `;
-
-                    isContentLoaded = true;
-                }, 1000);
-            }
-        } else
+            width += 1;
+            height += 1;
+        }
+    } else
+    {
+        // Scroll w dół
+        if (width > 64 && height > 60)
         {
-            if (isSectionSmaller)
-            {
-                section1.classList.remove('section-1-smaller');
-                section1.classList.add('section-1-larger');
-                section1.style.width = largerWidth;
-                section1.style.height = largerHeight;
-                isSectionSmaller = false;
+            width -= 1;
+            height -= 1;
+        }
+    }
 
-                section1.innerHTML = `
-            <div class="section-1-video-wrapper">
-              <div class="section-1-curtain"></div>
-              <video src="video/BOSKO_REEL_v4.mp4" autoplay muted loop></video>
-            </div>
-            <div class="section-1-text-content">
-              <div class="title">
-                <div class="title-inner">
-                  <div class="bosko">
-                    <div class="bosko-inner">
-                      <span class="word" style="--delay: 0">We </span>
-                      <span class="word" style="--delay: 1">connect</span>
-                      <br />
-                      <span class="word" style="--delay: 2">brands </span>
-                      <span class="word" style="--delay: 3">+ </span>
-                      <span class="word" style="--delay: 4">culture</span>
-                      <br />
-                      <span class="word" style="--delay: 5">to </span>
-                      <span class="word" style="--delay: 6">create </span>
-                      <span class="word" style="--delay: 7">campaigns</span>
-                      <br />
-                      <span class="word" style="--delay: 8">people </span>
-                      <span class="word" style="--delay: 9">love</span>
-                    </div>
-                  </div>
+    // Check if the text content should change
+    if (width <= 64 && height <= 60 && !isSectionChanged)
+    {
+        section1.innerHTML = `
+        <div class="video-container">
+          <video src="video/BOSKO_REEL_v4.mp4" controls poster="img/poster.png"></video>
+        </div>
+      `;
+        isSectionChanged = true;
+        setPageHolder(false, 300); // Set pageHolder to false after a 1-second delay
+    }
+
+    if (width >= 96 && height >= 96 && sectionResize && isSectionChanged)
+    {
+        section1.innerHTML = `
+        <div class="section-1-video-wrapper">
+          <div class="section-1-curtain"></div>
+          <video src="video/BOSKO_REEL_v4.mp4" autoplay muted loop></video>
+        </div>
+        <div class="section-1-text-content">
+          <div class="title">
+            <div class="title-inner">
+              <div class="bosko">
+                <div class="bosko-inner">
+                  <span class="word" style="--delay: 0">We </span>
+                  <span class="word" style="--delay: 1">connect</span>
+                  <br />
+                  <span class="word" style="--delay: 2">brands </span>
+                  <span class="word" style="--delay: 3">+ </span>
+                  <span class="word" style="--delay: 4">culture</span>
+                  <br />
+                  <span class="word" style="--delay: 5">to </span>
+                  <span class="word" style="--delay: 6">create </span>
+                  <span class="word" style="--delay: 7">campaigns</span>
+                  <br />
+                  <span class="word" style="--delay: 8">people </span>
+                  <span class="word" style="--delay: 9">love</span>
                 </div>
               </div>
             </div>
-        `;
+          </div>
+        </div>
+      `;
+        setPageHolder(true, 1); // Set pageHolder to true after a 0.001-second delay
+        isSectionChanged = false;
+    }
+
+    // Update the size and font size
+    updateSize();
+});
+
+// Call the updateSize function initially to set the initial size and position
+updateSize();
+
+// Superpowers Image Animation for Small Screens
+
+if (window.matchMedia('(max-width: 767.99px)').matches)
+{
+    window.addEventListener('scroll', function ()
+    {
+        var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
+        var windowHeight = window.innerHeight;
+
+        for (var i = 0; i < images.length; i++)
+        {
+            var image = images[i];
+            var rect = image.getBoundingClientRect();
+
+            if (rect.bottom <= windowHeight / 2 && rect.bottom >= windowHeight * 0.15)
+            {
+                image.classList.add('expanded');
+                image.style.transform = 'scale(1.1)';
+            } else
+            {
+                image.classList.remove('expanded');
+                image.style.transform = 'scale(1)';
             }
         }
-    }
-}
-
-function handleMouseScroll()
-{
-    isMouseScrollUsed = true;
-    window.removeEventListener('wheel', handleMouseScroll);
-}
-
-if (window.matchMedia('(min-width: 768px)').matches)
-{
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('wheel', handleMouseScroll);
+    });
 }
 
 // Superpowers Image Animation for Small Screens
