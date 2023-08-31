@@ -20,13 +20,9 @@
     url("fonts/BiennaleBold/font.woff") format("woff");
 }
 
-/* set image position */
-img {
-  vertical-align: bottom;
-}
-
 /* Sticky Footer */
 body {
+  font-family: "BiennaleFont";
   min-height: 100vh;
   padding: 0;
   margin: 0;
@@ -37,6 +33,11 @@ body {
   body {
     overflow: hidden;
   }
+}
+
+/* set image position */
+img {
+  vertical-align: bottom;
 }
 
 /* without fixed header this makes no sense */
@@ -986,8 +987,8 @@ body {
   }
 }
 
-.footer {
-}
+/* .footer {
+} */
 
 .rights {
   color: #8d8a8c;
