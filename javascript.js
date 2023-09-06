@@ -1,3 +1,6 @@
+// created by Wojciech Przyłuski
+// https://github.com/przwojwwp/
+
 // Detect request animation frame
 var scroll =
     window.requestAnimationFrame ||

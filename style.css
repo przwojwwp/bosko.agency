@@ -1,3 +1,6 @@
+/* Created by Wojciech Przyłuski */
+/* https://github.com/przwojwwp/ */
+
 /* variables */
 :root {
   --black: #000;
@@ -43,7 +46,7 @@ img {
 /* without fixed header this makes no sense */
 .header {
   position: fixed;
-  top: 3.6vw;
+  top: 4vw;
   transform: translateY(-50%);
   left: 5vw;
   padding: calc(var(--gutter) * 0.5);
@@ -52,7 +55,7 @@ img {
 
 @media screen and (max-width: 767.99px) {
   .header {
-    top: 3.5%;
+    top: 4%;
     left: 2%;
   }
 }
@@ -62,7 +65,7 @@ img {
   display: inline-block;
   padding-bottom: calc(var(--gutter) * 0.25);
   border-bottom: 0.2em solid black;
-  font-size: 2.5vw;
+  font-size: 2.6vw;
   font-family: "BiennaleFont";
 }
 
@@ -74,7 +77,6 @@ img {
 }
 
 .logo--invert {
-  background-color: var(--black);
   color: var(--white);
   border-color: var(--white);
 }
