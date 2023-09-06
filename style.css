@@ -43,7 +43,7 @@ img {
 /* without fixed header this makes no sense */
 .header {
   position: fixed;
-  top: 3.5vw;
+  top: 3.6vw;
   transform: translateY(-50%);
   left: 5vw;
   padding: calc(var(--gutter) * 0.5);
