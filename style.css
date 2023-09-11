@@ -152,7 +152,7 @@ img {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 4vh;
+  margin-top: 2%;
   overflow: hidden; /* Dodajemy overflow: hidden, aby ukryć ewentualne przekroczenie sekcji */
   background-color: black;
 }
@@ -160,6 +160,7 @@ img {
 @media screen and (max-width: 767.99px) {
   .section-1 {
     height: 71vh !important;
+    margin-top: 1vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -441,26 +442,36 @@ img {
   align-items: top;
   margin: 0;
   padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-3-img-container img {
   width: 24vw;
   margin: 15px 20px 10px 20px;
+  opacity: 0;
+}
+
+.section-3-img-container img.expanded {
+  animation-name: fadeIn;
+  animation-duration: 2s; /* Zmieniona wartość na 2 sekundy */
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+/* Dodaj animację fadeIn */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 767.99px) {
   .section-3-img-container img {
     width: 45vw;
-  }
-
-  .section-3-img-container img:hover {
-    transform: scale(1.1);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .section-3-img-container img:hover {
-    transform: none;
   }
 }
 
@@ -468,32 +479,16 @@ img {
   background-color: #d1ff00;
 }
 
-.brand-experience:hover {
-  transform: scale(1.1);
-}
-
 .brand-partnership {
   background-color: #ee01cf;
-}
-
-.brand-partnership:hover {
-  transform: scale(1.1);
 }
 
 .branded-content {
   background-color: #19e59c;
 }
 
-.branded-content:hover {
-  transform: scale(1.1);
-}
-
 .creative-medium {
   background-color: #00fcff;
-}
-
-.creative-medium:hover {
-  transform: scale(1.1);
 }
 
 .superpower-description-text {

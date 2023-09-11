@@ -123,80 +123,45 @@ window.onresize = function (event)
     loop();
 };
 
-// Superpowers Image Animation for Small Screens
+// Pobieranie wszystkich obrazów z klasami 'img-fluid' wewnątrz section-3-img-container
+const imagesSection3 = document.querySelectorAll('.section-3-img-container .img-fluid');
 
-if (window.matchMedia('(max-width: 767.99px)').matches)
+// Ustawienie początkowego stanu obrazów na niewidoczne
+imagesSection3.forEach(image =>
 {
-    window.addEventListener('scroll', function ()
+    image.style.opacity = '0';
+});
+
+// Funkcja do obsługi efektu pojawiania się obrazów w sekcji 3
+function fadeInImagesSection3()
+{
+    // Sprawdzanie, czy obraz jest w widoku przeglądarki
+    imagesSection3.forEach((image, index) =>
     {
-        var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
-        var windowHeight = window.innerHeight;
+        const rect = image.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
-        for (var i = 0; i < images.length; i++)
+        // Jeśli obraz jest w widoku przeglądarki
+        if (rect.top <= windowHeight)
         {
-            var image = images[i];
-            var rect = image.getBoundingClientRect();
+            // Opóźnienie pojawiania się obrazu o 0.5 sekundy * indeks obrazu
+            const delay = 500 * index;
 
-            if (rect.bottom <= windowHeight / 2 && rect.bottom >= windowHeight * 0.15)
+            // Ustawienie animacji na obrazie po opóźnieniu
+            setTimeout(() =>
             {
-                image.classList.add('expanded');
-                image.style.transform = 'scale(1.1)';
-            } else
-            {
-                image.classList.remove('expanded');
-                image.style.transform = 'scale(1)';
-            }
+                image.style.animation = 'fadeIn 1s forwards ease';
+            }, delay);
         }
     });
 }
 
-// Superpowers Image Animation for Small Screens
+// Obsługa pojawiania się obrazów przy załadowaniu strony
+window.addEventListener('load', fadeInImagesSection3);
 
-if (window.matchMedia('(max-width: 767.99px)').matches)
-{
-    window.addEventListener('scroll', function ()
-    {
-        var images = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
-        var windowHeight = window.innerHeight;
+// Obsługa pojawiania się obrazów przy przewijaniu strony
+window.addEventListener('scroll', fadeInImagesSection3);
 
-        for (var i = 0; i < images.length; i++)
-        {
-            var image = images[i];
-            var rect = image.getBoundingClientRect();
-
-            if (rect.bottom <= windowHeight / 2 && rect.bottom >= windowHeight * 0.15)
-            {
-                image.classList.add('expanded');
-                image.style.transform = 'scale(1.1)';
-            } else
-            {
-                image.classList.remove('expanded');
-                image.style.transform = 'scale(1)';
-            }
-        }
-    });
-}
-
-// Superpowers Image Animation for Medium and Larger Screens
-
-var mediumImages = document.querySelectorAll('.brand-experience, .brand-partnership, .branded-content, .creative-medium');
-
-for (var i = 0; i < mediumImages.length; i++)
-{
-    var image = mediumImages[i];
-
-    image.addEventListener('mouseenter', function ()
-    {
-        this.classList.add('expanded');
-        this.style.transform = 'scale(1.1)';
-    });
-
-    image.addEventListener('mouseleave', function ()
-    {
-        this.classList.remove('expanded');
-        this.style.transform = 'scale(1)';
-    });
-}
 
 // Starring Image Animation
 // Pobieranie wszystkich obrazów z klasą 'img-fluid' wewnątrz sekcji-4-img-container
