@@ -32,12 +32,6 @@ body {
   font-size: 1rem;
 }
 
-@media screen and (min-width: 768px) {
-  body {
-    overflow: hidden;
-  }
-}
-
 /* set image position */
 img {
   vertical-align: bottom;
@@ -151,60 +145,16 @@ img {
 /* Section 1 Section 1 Section 1 Section 1 Section 1 Section 1 */
 
 .section-1 {
-  height: 96vh;
-  width: 100%;
-  padding-top: 2%;
+  height: 92vh;
+  width: 96%;
   padding-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  margin-top: 4vh;
   overflow: hidden; /* Dodajemy overflow: hidden, aby ukryć ewentualne przekroczenie sekcji */
-}
-
-.section-1.section-1-smaller {
-  animation-name: resizeSmaller;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-.section-1.section-1-larger {
-  animation-name: resizeLarger;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes resizeSmaller {
-  from {
-    width: 100vw;
-    height: 95vh;
-  }
-  to {
-    width: 55vw;
-    height: 62.5vh;
-  }
-}
-
-@keyframes resizeLarger {
-  from {
-    width: 55vw;
-    height: 62.5vh;
-  }
-  to {
-    width: 100%;
-    height: 95vh;
-  }
-}
-
-.section-1-curtain {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  background-color: black;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -216,32 +166,21 @@ img {
   }
 }
 
-.section-1-video-wrapper {
+.section-1-img-wrapper {
   position: relative;
-  width: 96%;
+  width: 100%;
   height: 100%;
 }
 
-.section-1-video-wrapper video {
+.section-1-video-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.video-container {
-  position: relative;
-  width: 96%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.transition {
-  transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
-}
-
 .section-1-text-content {
   position: absolute;
-  top: 50%;
+  top: 48.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -286,11 +225,26 @@ img {
 
 .section-2 {
   position: relative;
-  width: 100vw; /* Zajmuje 100% szerokości dostępnego ekranu */
+  width: 100%; /* Zajmuje 100% szerokości dostępnego ekranu */
   height: auto; /* Zajmuje 100% wysokości dostępnego ekranu */
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 8vh;
+}
+
+.section-2-video-wrapper {
+  position: relative;
+  width: 50%;
+  height: 28.125%;
+  margin: 0 auto;
+}
+
+.section-2-video-wrapper video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Small screens (maksymalna szerokość: 767px) */
