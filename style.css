@@ -45,6 +45,7 @@ img {
   left: 5vw;
   padding: calc(var(--gutter) * 0.5);
   text-align: center;
+  z-index: 1;
 }
 
 @media screen and (max-width: 767.99px) {
@@ -65,7 +66,7 @@ img {
 
 @media screen and (max-width: 767.99px) {
   .logo {
-    font-size: 3vw;
+    font-size: 5vw;
     padding-bottom: calc(var(--gutter) * 0.1);
   }
 }
