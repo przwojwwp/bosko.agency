@@ -40,9 +40,9 @@ img {
 /* without fixed header this makes no sense */
 .header {
   position: fixed;
-  top: 4vw;
+  top: 13%;
   transform: translateY(-50%);
-  left: 5vw;
+  left: 5%;
   padding: calc(var(--gutter) * 0.5);
   text-align: center;
   z-index: 1;
@@ -50,8 +50,20 @@ img {
 
 @media screen and (max-width: 767.99px) {
   .header {
-    top: 4%;
-    left: 2%;
+    top: 10%;
+    left: 32%;
+  }
+}
+
+@media screen and (max-width: 767.99px) {
+  .section--2,
+  .section-2-second-part,
+  .section--3,
+  .section--4,
+  .section--5,
+  .secton--6 {
+    position: relative;
+    z-index: 2;
   }
 }
 
@@ -66,7 +78,7 @@ img {
 
 @media screen and (max-width: 767.99px) {
   .logo {
-    font-size: 5vw;
+    font-size: 8vw;
     padding-bottom: calc(var(--gutter) * 0.1);
   }
 }
@@ -224,7 +236,6 @@ img {
 /* End Of Section 1 End Of Section 1 End Of Section 1 End Of Section 1 */
 
 /* Section 2 Section 2 Section 2 Section 2 Section 2 Section 2 */
-
 .section-2 {
   position: relative;
   width: 100%; /* Zajmuje 100% szerokości dostępnego ekranu */
@@ -233,6 +244,7 @@ img {
   align-items: center;
   flex-direction: column;
   margin-top: 8vh;
+  z-index: 2;
 }
 
 .section-2-video-wrapper {
@@ -296,6 +308,7 @@ img {
   font-size: 7vw;
   font-weight: bold;
   line-height: 1;
+  z-index: 2;
 }
 
 @media screen and (max-width: 767.99px) {
